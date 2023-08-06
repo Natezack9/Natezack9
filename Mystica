@@ -1,0 +1,1821 @@
+```
+// Define the different magic types
+enum MagicType {
+Fire, Ice, Wind, Water, Sun, Moon, Earth, Spirit, Blood, Celestial, Ghost, Poison, Dragon, Fairy, Rainbow, Candy, Star
+};
+
+// Define the character class
+class Character {
+public:
+std::string name;
+MagicType magicType;
+int goldCoins;
+
+// Constructor to set the default values
+Character() {
+name = "Default";
+magicType = MagicType::Fire;
+goldCoins = 1000;
+}
+
+// Method to display character information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Magic Type: " << magicType << std::endl;
+std::cout << "Gold Coins: " << goldCoins << std::endl;
+}
+};
+
+int main() {
+// Create a new character
+Character myCharacter;
+
+// Prompt the user to enter their name and magic type
+std::cout << "Enter your name: ";
+std::cin >> myCharacter.name;
+
+std::cout << "Select your magic type:" << std::endl;
+std::cout << " 1. Fire" << std::endl;
+std::cout << " 2. Ice" << std::endl;
+std::cout << " 3. Wind" << std::endl;
+std::cout << " 4. Water" << std::endl;
+std::cout << " 5. Sun" << std::endl;
+std::cout << " 6. Moon" << std::endl;
+std::cout << " 7. Earth" << std::endl;
+std::cout << " 8. Spirit" << std::endl;
+std::cout << " 9. Blood" << std::endl;
+std::cout << "10. Celestial" << std::endl;
+std::cout << "11. Ghost" << std::endl;
+std::cout << "12. Poison" << std::endl;
+std::cout << "13. Dragon" << std::endl;
+std::cout << "14. Fairy" << std::endl;
+std::cout << "15. Rainbow" << std::endl;
+std::cout << "16. Candy" << std::endl;
+std::cout << "17. Star" << std::endl;
+
+int magicSelection;
+std::cin >> magicSelection;
+
+// Set the magic type based on the user's selection
+switch(magicSelection) {
+case 1:
+myCharacter.magicType = MagicType::Fire;
+break;
+case 2:
+myCharacter.magicType = MagicType::Ice;
+break;
+case 3:
+myCharacter.magicType = MagicType::Wind;
+break;
+case 4:
+myCharacter.magicType = MagicType::Water;
+break;
+case 5:
+myCharacter.magicType = MagicType::Sun;
+break;
+case 6:
+myCharacter.magicType = MagicType::Moon;
+break;
+case 7:
+myCharacter.magicType = MagicType::Earth;
+break;
+case 8:
+myCharacter.magicType = MagicType::Spirit;
+break;
+case 9:
+myCharacter.magicType = MagicType::Blood;
+break;
+case 10:
+myCharacter.magicType = MagicType::Celestial;
+break;
+case 11:
+myCharacter.magicType = MagicType::Ghost;
+break;
+case 12:
+myCharacter.magicType = MagicType::Poison;
+break;
+case 13:
+myCharacter.magicType = MagicType::Dragon;
+break;
+case 14:
+myCharacter.magicType = MagicType::Fairy;
+break;
+case 15:
+myCharacter.magicType = MagicType::Rainbow;
+break;
+case 16:
+myCharacter.magicType = MagicType::Candy;
+break;
+case 17:
+myCharacter.magicType = MagicType::Star;
+break;
+default:
+std::cout << "Invalid selection." << std::endl;
+break;
+}
+
+// Display the character's information
+myCharacter.displayInfo();
+
+return 0;
+}
+```
+```
+// Create a struct to represent the different types of items
+struct Item {
+std::string name;
+int value;
+};
+
+// Define the different types of items
+Item diamond { "Diamond", 10000 };
+Item goldIngot { "Gold Ingot", 10 };
+
+// Define the different types of pets
+enum PetType {
+Cat,
+Dog,
+Dragon,
+Unicorn
+};
+
+// Define the pet class
+class Pet {
+public:
+std::string name;
+PetType type;
+int level;
+int experience;
+
+// Constructor to set default values
+Pet() {
+name = "Default";
+type = PetType::Cat;
+level = 1;
+experience = 0;
+}
+
+// Method to display pet information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Type: " << type << std::endl;
+std::cout << "Level: " << level << std::endl;
+std::cout << "Experience: " << experience << std::endl;
+}
+};
+
+// Define the clan class
+class Clan {
+public:
+std::vector<std::string> members;
+int gold;
+std::string name;
+
+// Constructor to set default values
+Clan() {
+gold = 0;
+name = "Default Clan";
+}
+
+// Method to add a member to the clan
+void addMember(std::string memberName) {
+members.push_back(memberName);
+}
+
+// Method to remove a member from the clan
+void removeMember(std::string memberName) {
+auto it = std::find(members.begin(), members.end(), memberName);
+if(it != members.end()) {
+members.erase(it);
+}
+}
+};
+
+int main() {
+// Create a new pet
+Pet myPet;
+
+// Prompt the user to select a pet type
+std::cout << "Select a pet type:" << std::endl;
+std::cout << " 1. Cat" << std::endl;
+std::cout << " 2. Dog" << std::endl;
+std::cout << " 3. Dragon" << std::endl;
+std::cout << " 4. Unicorn" << std::endl;
+
+int petSelection;
+std::cin >> petSelection;
+
+// Set the pet type based on the user's selection
+switch(petSelection) {
+case 1:
+myPet.type = PetType::Cat;
+break;
+case 2:
+myPet.type = PetType::Dog;
+break;
+case 3:
+myPet.type = PetType::Dragon;
+break;
+case 4:
+myPet.type = PetType::Unicorn;
+break;
+default:
+std::cout << "Invalid selection." << std::endl;
+break;
+}
+
+// Display the pet's information
+myPet.displayInfo();
+
+// Create a new clan
+Clan myClan;
+
+// Add a member to the clan
+myClan.addMember("Player 1");
+
+// Display the clan's information
+std::cout << "Clan Name: " << myClan.name << std::endl;
+std::cout << "Clan Members: ";
+for (auto member : myClan.members) {
+std::cout << member << ", ";
+}
+std::cout << std::endl;
+
+return 0;
+}
+```
+```
+// Define the player class
+class Player {
+public:
+float x;
+float y;
+float z;
+
+// Constructor to set default values
+Player() {
+x = 0.0f;
+y = 0.0f;
+z = 0.0f;
+}
+
+// Method to move the player forward
+void moveForward(float distance) {
+z += distance;
+}
+
+// Method to move the player backward
+void moveBackward(float distance) {
+z -= distance;
+}
+
+// Method to move the player left
+void moveLeft(float distance) {
+x -= distance;
+}
+
+// Method to move the player right
+void moveRight(float distance) {
+x += distance;
+}
+};
+
+int main() {
+// Create a new player
+Player myPlayer;
+
+// Move the player forward
+myPlayer.moveForward(1.0f);
+
+// Move the player left
+myPlayer.moveLeft(0.5f);
+
+// Move the player backward
+myPlayer.moveBackward(2.0f);
+
+// Move the player right
+myPlayer.moveRight(0.5f);
+
+// Print the player's position
+std::cout << "Player Position: (" << myPlayer.x << ", " << myPlayer.y << ", " << myPlayer.z << ")" << std::endl;
+
+return 0;
+}
+```
+```
+// Define the monster class
+class Monster {
+public:
+std::string name;
+int healthPoints;
+
+// Constructor to set default values
+Monster() {
+name = "Default Monster";
+healthPoints = 0;
+}
+
+// Method to attack the monster
+void attack(int damage) {
+healthPoints -= damage;
+}
+};
+
+// Define the different types of monsters
+Monster goblin { "Goblin", 10 };
+Monster vampire { "Vampire", 200 };
+Monster ghost { "Ghost", 200 };
+Monster werewolf { "Werewolf", 200 };
+Monster demon { "Demon", 1000 };
+Monster devil { "Devil", 1000 };
+
+// Define the different types of pets
+enum PetType {
+Cat,
+Dog,
+Dragon,
+Unicorn
+};
+
+// Define the pet class
+class Pet {
+public:
+std::string name;
+PetType type;
+int level;
+int experience;
+int magicType;
+
+// Constructor to set default values
+Pet() {
+name = "Default";
+type = PetType::Cat;
+level = 1;
+experience = 0;
+magicType = 0;
+}
+
+// Method to display pet information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Type: " << type << std::endl;
+std::cout << "Level: " << level << std::endl;
+std::cout << "Experience: " << experience << std::endl;
+std::cout << "Magic Type: " << magicType << std::endl;
+}
+};
+
+// Define the player class
+class Player {
+public:
+float x;
+float y;
+float z;
+int healthPoints;
+int magicType;
+Pet pet;
+
+// Constructor to set default values
+Player() {
+x = 0.0f;
+y = 0.0f;
+z = 0.0f;
+healthPoints = 100;
+magicType = 0;
+}
+
+// Method to move the player forward
+void moveForward(float distance) {
+z += distance;
+}
+
+// Method to move the player backward
+void moveBackward(float distance) {
+z -= distance;
+}
+
+// Method to move the player left
+void moveLeft(float distance) {
+x -= distance;
+}
+
+// Method to move the player right
+void moveRight(float distance) {
+x += distance;
+}
+
+// Method to attack a monster
+void attack(Monster& monster, int damage) {
+monster.attack(damage);
+}
+
+// Method to respawn the player
+void respawn() {
+// Check if the player has a house
+if(hasHouse()) {
+// Respawn near the house
+x = houseX;
+y = houseY;
+z = houseZ;
+}
+// Check if the player is in a clan
+else if(isInClan()) {
+// Respawn near the clan's location
+x = clanX;
+y = clanY;
+z = clanZ;
+}
+else {
+// Respawn in the middle of the town
+x = townX;
+y = townY;
+z = townZ;
+}
+
+// Reset the player's health points
+healthPoints = 100;
+}
+
+private:
+// Private variables to store the player's house and clan information
+bool hasHouse() { /* code to check if the player has a house */ }
+float houseX;
+float houseY;
+float houseZ;
+
+bool isInClan() { /* code to check if the player is in a clan */ }
+float clanX;
+float clanY;
+float clanZ;
+
+// Private variables to store the town location
+float townX;
+float townY;
+float townZ;
+};
+
+int main() {
+// Create a new player
+Player myPlayer;
+
+// Move the player forward
+myPlayer.moveForward(1.0f);
+
+// Move the player left
+myPlayer.moveLeft(0.5f);
+
+// Move the player backward
+myPlayer.moveBackward(2.0f);
+
+// Move the player right
+myPlayer.moveRight(0.5f);
+
+// Print the player's position
+std::cout << "Player Position: (" << myPlayer.x << ", " << myPlayer.y << ", " << myPlayer.z << ")" << std::endl;
+
+// Attack a monster
+Monster myMonster = goblin;
+myPlayer.attack(myMonster, 5);
+std::cout << "Monster Name: " << myMonster.name << std::endl;
+std::cout << "Monster Health Points: " << myMonster.healthPoints << std::endl;
+
+// Respawn the player
+myPlayer.respawn();
+
+// Change the player's pet
+Pet myPet = myPlayer.pet;
+myPet.type = PetType::Dragon;
+myPet.magicType = myPlayer.magicType;
+myPlayer.pet = myPet;
+
+// Tame a unicorn
+Pet myUnicorn;
+myUnicorn.type = PetType::Unicorn;
+myUnicorn.magicType = (myPlayer.magicType + 8) % 17;
+myPlayer.pet = myUnicorn;
+
+return 0;
+}
+```
+```
+// Define the town hall class
+class TownHall {
+public:
+// Method to customize the pet
+void customizePet(Pet& pet) {
+// Code to customize the pet's appearance and attributes
+}
+};
+
+// Define the dragon class
+class Dragon {
+public:
+int healthPoints;
+
+// Constructor to set default values
+Dragon() {
+healthPoints = 1000000;
+}
+
+// Method to attack the dragon
+void attack(int damage) {
+healthPoints -= damage;
+}
+};
+
+int main() {
+// Create a new town hall
+TownHall myTownHall;
+
+// Customize the player's pet
+myTownHall.customizePet(myPlayer.pet);
+
+// Try to tame a dragon
+Dragon myDragon;
+bool isTamed = false;
+while(!isTamed) {
+// Code to attack the dragon and tame it
+}
+
+// Drop crystals if the dragon is killed
+if(myDragon.healthPoints <= 0) {
+int numCrystals = 500;
+// Code to drop the crystals for the player to pick up
+}
+
+return 0;
+}
+```
+```
+// Define the character class
+class Character {
+public:
+int hairOption;
+bool isMale;
+bool isAnime;
+
+// Constructor to set default values
+Character() {
+hairOption = 1;
+isMale = true;
+isAnime = true;
+}
+
+// Method to change the hair option
+void changeHairOption(int option) {
+hairOption = option;
+}
+
+// Method to change the gender
+void changeGender(bool isMale) {
+this->isMale = isMale;
+}
+
+// Method to change the anime quality
+void changeAnimeQuality(bool isAnime) {
+this->isAnime = isAnime;
+}
+};
+
+int main() {
+// Create a new character
+Character myCharacter;
+
+// Change the character's hair option
+myCharacter.changeHairOption(2);
+
+// Change the character's gender
+myCharacter.changeGender(false);
+
+// Change the character's anime quality
+myCharacter.changeAnimeQuality(false);
+
+return 0;
+}
+```
+```
+// Define the location class
+class Location {
+public:
+std::string name;
+float x;
+float y;
+float z;
+
+// Constructor to set default values
+Location(std::string name, float x, float y, float z) {
+this->name = name;
+this->x = x;
+this->y = y;
+this->z = z;
+}
+
+// Method to display the location information
+void displayInfo() {
+std::cout << "Location: " << name << std::endl;
+std::cout << "Coordinates: (" << x << ", " << y << ", " << z << ")" << std::endl;
+}
+};
+
+int main() {
+// Define some locations
+Location town("Town", 0.0f, 0.0f, 0.0f);
+Location woods("Woods", 10.0f, 0.0f, 10.0f);
+Location mountains("Mountains", 20.0f, 0.0f, 20.0f);
+
+// Display the location information
+town.displayInfo();
+woods.displayInfo();
+mountains.displayInfo();
+
+return 0;
+}
+```
+```
+// Define the villager class
+class Villager {
+public:
+std::string name;
+std::string appearance;
+
+// Constructor to set default values
+Villager(std::string name, std::string appearance) {
+this->name = name;
+this->appearance = appearance;
+}
+
+// Method to display the villager information
+void displayInfo() {
+std::cout << "Villager: " << name << std::endl;
+std::cout << "Appearance: " << appearance << std::endl;
+}
+
+// Method to give a quest to the player
+void giveQuest() {
+// Code to generate a quest for the player
+}
+};
+
+int main() {
+// Define some villagers
+Villager villager1("John", "Friendly looking old man");
+Villager villager2("Mary", "Young woman with a red dress");
+Villager villager3("Bob", "Middle-aged man with a beard");
+
+// Display the villager information
+villager1.displayInfo();
+villager2.displayInfo();
+villager3.displayInfo();
+
+// Give a quest to the player
+villager1.giveQuest();
+
+return 0;
+}
+```
+```
+// Define the pet class
+class Pet {
+public:
+std::string name;
+std::string appearance;
+bool isRidable;
+
+// Constructor to set default values
+Pet(std::string name, std::string appearance, bool isRidable) {
+this->name = name;
+this->appearance = appearance;
+this->isRidable = isRidable;
+}
+
+// Method to display the pet information
+void displayInfo() {
+std::cout << "Pet: " << name << std::endl;
+std::cout << "Appearance: " << appearance << std::endl;
+if(isRidable) {
+std::cout << "This pet is ridable." << std::endl;
+}
+}
+
+// Method to ride the pet
+void ride() {
+if(isRidable) {
+// Code to ride the pet
+}
+}
+
+// Method to get off the pet
+void getOff() {
+if(isRidable) {
+// Code to get off the pet
+}
+}
+};
+
+int main() {
+// Define some pets
+Pet cat("Cat", "Fluffy and cute", false);
+Pet dog("Dog", "Loyal and playful", false);
+Pet dragon("Dragon", "Huge and fire-breathing", true);
+Pet unicorn("Unicorn", "Elegant and magical", true);
+
+// Display the pet information
+cat.displayInfo();
+dog.displayInfo();
+dragon.displayInfo();
+unicorn.displayInfo();
+
+// Handle player input to ride or get off the dragon or unicorn, and to view the inventory
+while(true) {
+if(/* player presses 'h' key */) {
+dragon.ride();
+unicorn.ride();
+}
+if(/* player presses 'n' key */) {
+dragon.getOff();
+unicorn.getOff();
+}
+if(/* player presses 'e' key */) {
+// Code to open the inventory
+}
+}
+
+return 0;
+}
+```
+```
+// Define the pet class
+class Pet {
+public:
+std::string name;
+std::string appearance;
+bool isRidable;
+float size;
+bool isFollowingOwner;
+
+// Constructor to set default values
+Pet(std::string name, std::string appearance, bool isRidable) {
+this->name = name;
+this->appearance = appearance;
+this->isRidable = isRidable;
+this->size = 1.0f;
+this->isFollowingOwner = false;
+}
+
+// Method to display the pet information
+void displayInfo() {
+std::cout << "Pet: " << name << std::endl;
+std::cout << "Appearance: " << appearance << std::endl;
+if(isRidable) {
+std::cout << "This pet is ridable." << std::endl;
+}
+std::cout << "Size: " << size << std::endl;
+}
+
+// Method to animate the pet
+void animate() {
+// Code to animate the pet
+}
+
+// Method to make the pet grow
+void grow() {
+size += 0.1f;
+}
+
+// Method to make the pet follow its owner
+void followOwner() {
+isFollowingOwner = true;
+// Code to make the pet follow its owner
+}
+};
+
+int main() {
+// Define some pets
+Pet cat("Cat", "Fluffy and cute", false);
+Pet dog("Dog", "Loyal and playful", false);
+Pet dragon("Dragon", "Huge and fire-breathing", true);
+Pet unicorn("Unicorn", "Elegant and magical", true);
+
+// Handle pet growth every 20 minutes
+while(true) {
+// Code to wait for 20 minutes
+cat.grow();
+dog.grow();
+dragon.grow();
+unicorn.grow();
+}
+```
+// Define the player class
+class Player {
+public:
+std::string name;
+std::string gender;
+std::string hairStyle;
+std::string hairColor;
+std::string clothing;
+
+// Constructor to set default values
+Player(std::string name, std::string gender) {
+this->name = name;
+this->gender = gender;
+this->hairStyle = "Short";
+this->hairColor = "Brown";
+this->clothing = "T-shirt and Jeans";
+}
+
+// Method to display the player information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Gender: " << gender << std::endl;
+std::cout << "Hair Style: " << hairStyle << std::endl;
+std::cout << "Hair Color: " << hairColor << std::endl;
+std::cout << "Clothing: " << clothing << std::endl;
+}
+
+// Method to change the hair style
+void changeHairStyle(std::string newStyle) {
+hairStyle = newStyle;
+}
+
+// Method to change the hair color
+void changeHairColor(std::string newColor) {
+hairColor = newColor;
+}
+
+// Method to change the clothing
+void changeClothing(std::string newClothing) {
+clothing = newClothing;
+}
+};
+
+int main() {
+// Define a male player character
+Player malePlayer("John", "Male");
+
+// Customize the male player character
+malePlayer.changeHairStyle("Spiky");
+malePlayer.changeHairColor("Blonde");
+malePlayer.changeClothing("Suit and Tie");
+
+// Display the male player character information
+malePlayer.displayInfo();
+
+// Define a female player character
+Player femalePlayer("Jane", "Female");
+
+// Customize the female player character
+femalePlayer.changeHairStyle("Long and Wavy");
+femalePlayer.changeHairColor("Black");
+femalePlayer.changeClothing("Dress");
+
+// Display the female player character information
+femalePlayer.displayInfo();
+
+return 0;
+}
+```
+  ```
+// Define the player class
+class Player {
+public:
+std::string name;
+int health;
+int magicPower;
+
+// Constructor to set default values
+Player(std::string name) {
+this->name = name;
+this->health = 100;
+this->magicPower = 50;
+}
+
+// Method to attack with magic
+void attack(int attackType) {
+if(magicPower >= 10) {
+switch(attackType) {
+case 1:
+// Code to perform magic attack 1
+magicPower -= 10;
+break;
+case 2:
+// Code to perform magic attack 2
+magicPower -= 20;
+break;
+case 3:
+// Code to perform magic attack 3
+magicPower -= 30;
+break;
+default:
+// Invalid attack type
+break;
+}
+}
+}
+
+// Method to run
+void run() {
+// Code to initiate running
+}
+
+// Method to heal
+void heal() {
+if(magicPower >= 40) {
+// Code to heal the player
+health += 10;
+magicPower -= 40;
+}
+}
+
+// Method to initiate a fight
+void initiateFight() {
+int targetID = 0;
+// Code to determine the target ID
+if(/* player presses '4', '5', or '4' keys */) {
+// Code to initiate the fight with the target
+}
+}
+};
+
+int main() {
+// Define the player character
+Player player("John");
+
+// Handle player input to attack with magic, run, heal, or initiate a fight
+while(true) {
+if(/* player presses '1', '2', or '3' keys */) {
+int attackType = /* get the attack type from player input */;
+player.attack(attackType);
+}
+if(/* player presses 'l' key */) {
+player.run();
+}
+if(/* player presses '9' key */) {
+player.heal();
+}
+if(/* player presses '4', '5', or '6' keys */) {
+player.initiateFight();
+}
+}
+
+return 0;
+}
+```
+  ```
+// Define the pet class
+class Pet {
+public:
+std::string name;
+std::string appearance;
+bool isRidable;
+bool isHybrid;
+
+// Constructor to set default values
+Pet(std::string name, std::string appearance, bool isRidable, bool isHybrid) {
+this->name = name;
+this->appearance = appearance;
+this->isRidable = isRidable;
+this->isHybrid = isHybrid;
+}
+
+// Method to display the pet information
+void displayInfo() {
+std::cout << "Pet: " << name << std::endl;
+std::cout << "Appearance: " << appearance << std::endl;
+if(isRidable) {
+std::cout << "This pet is ridable." << std::endl;
+}
+if(isHybrid) {
+std::cout << "This pet is a hybrid." << std::endl;
+}
+}
+};
+
+// Define the breeder class
+class Breeder {
+public:
+std::vector<Pet*> pets;
+
+// Method to breed two pets
+void breedPets(Pet* pet1, Pet* pet2) {
+// Code to determine the hybrid pet appearance based on the parent pets
+Pet* hybridPet = new Pet("Hybrid", "Unique and special", false, true);
+pets.push_back(hybridPet);
+}
+
+// Method to display the available pets at the breeder
+void displayAvailablePets() {
+std::cout << "Available pets at the breeder:" << std::endl;
+for(Pet* pet : pets) {
+pet->displayInfo();
+}
+}
+};
+
+int main() {
+// Define some pets
+Pet cat("Cat", "Fluffy and cute", false, false);
+Pet dog("Dog", "Loyal and playful", false, false);
+Pet dragon("Dragon", "Huge and fire-breathing", true, false);
+Pet unicorn("Unicorn", "Elegant and magical", true, false);
+
+// Define the breeder
+Breeder breeder;
+
+// Breed some pets to make hybrids
+breeder.breedPets(&dragon, &unicorn);
+breeder.breedPets(&cat, &dog);
+breeder.breedPets(&dog, &dragon);
+breeder.breedPets(&dragon, &dragon);
+breeder.breedPets(&cat, &cat);
+breeder.breedPets(&unicorn, &unicorn);
+breeder.breedPets(&dog, &unicorn);
+
+// Display the available pets at the breeder
+breeder.displayAvailablePets();
+
+return 0;
+}
+```
+  ```
+// Define the player class
+class Player {
+public:
+std::string name;
+int level;
+int experience;
+int health;
+int magicPower;
+std::vector<std::string> inventory;
+
+// Constructor to set default values
+Player(std::string name) {
+this->name = name;
+this->level = 1;
+this->experience = 0;
+this->health = 100;
+this->magicPower = 50;
+this->inventory = {"Potion", "Elixir", "Key"};
+}
+
+// Method to display the player information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Level: " << level << std::endl;
+std::cout << "Experience: " << experience << std::endl;
+std::cout << "Health: " << health << std::endl;
+std::cout << "Magic Power: " << magicPower << std::endl;
+std::cout << "Inventory: ";
+for(std::string item : inventory) {
+std::cout << item << ", ";
+}
+std::cout << std::endl;
+}
+
+// Method to attack with magic
+void attack(int attackType) {
+if(magicPower >= 10) {
+switch(attackType) {
+case 1:
+// Code to perform magic attack 1
+magicPower -= 10;
+break;
+case 2:
+// Code to perform magic attack 2
+magicPower -= 20;
+break;
+case 3:
+// Code to perform magic attack 3
+magicPower -= 30;
+break;
+default:
+// Invalid attack type
+break;
+}
+}
+}
+
+// Method to run
+void run() {
+// Code to initiate running
+}
+
+// Method to heal
+void heal() {
+if(magicPower >= 40) {
+// Code to heal the player
+health += 10;
+magicPower -= 40;
+}
+}
+
+// Method to level up and gain experience
+void gainExperience(int experiencePoints) {
+experience += experiencePoints;
+if(experience >= level * 100) {
+level++;
+health += 10;
+magicPower += 5;
+}
+}
+
+// Method to manage the inventory
+void manageInventory() {
+// Code to manage the inventory
+}
+
+// Method to complete a quest
+void completeQuest() {
+int questID = 0;
+// Code to determine the quest ID
+if(/* player completes the quest */) {
+// Code to reward the player and give experience points
+gainExperience(50);
+inventory.push_back("Reward Item");
+}
+}
+};
+
+int main() {
+// Define the player character
+Player player("John");
+
+// Handle player input to attack with magic, run, heal, manage inventory, or complete a quest
+while(true) {
+if(/* player presses '1', '2', or '3' keys */) {
+int attackType = /* get the attack type from player input */;
+player.attack(attackType);
+}
+if(/* player presses 'l' key */) {
+player.run();
+}
+if(/* player presses '9' key */) {
+player.heal();
+}
+if(/* player presses 'i' key */) {
+player.manageInventory();
+}
+if(/* player completes a quest */) {
+player.completeQuest();
+}
+}
+
+return 0;
+}
+```
+```
+// Define the pet class
+class Pet {
+public:
+std::string name;
+std::string appearance;
+bool isRidable;
+bool isHybrid;
+int cost;
+
+// Constructor to set default values
+Pet(std::string name, std::string appearance, bool isRidable, bool isHybrid, int cost) {
+this->name = name;
+this->appearance = appearance;
+this->isRidable = isRidable;
+this->isHybrid = isHybrid;
+this->cost = cost;
+}
+
+// Method to display the pet information
+void displayInfo() {
+std::cout << "Pet: " << name << std::endl;
+std::cout << "Appearance: " << appearance << std::endl;
+if(isRidable) {
+std::cout << "This pet is ridable." << std::endl;
+}
+if(isHybrid) {
+std::cout << "This pet is a hybrid." << std::endl;
+}
+std::cout << "Cost: " << cost << " gold coins" << std::endl;
+}
+};
+
+int main() {
+// Define some pets
+Pet dragon("Dragon", "Huge and fire-breathing", true, false, 1000000);
+Pet ghostDragon("Ghost Dragon", "Ethereal and haunting", true, false, 2000000);
+Pet bloodDragon("Blood Dragon", "Sinister and terrifying", true, false, 3000000);
+
+// Display the available pets at the pet shop
+std::cout << "Available pets at the pet shop:" << std::endl;
+dragon.displayInfo();
+ghostDragon.displayInfo();
+bloodDragon.displayInfo();
+
+return 0;
+}
+```
+```
+// Define the player class
+class Player {
+public:
+std::string name;
+int health;
+int magicPower;
+
+// Constructor to set default values
+Player(std::string name) {
+this->name = name;
+this->health = 100;
+this->magicPower = 50;
+}
+
+// Method to attack with magic
+void attack(int attackType) {
+if(magicPower >= getMagicCost(attackType)) {
+int damage = getMagicDamage(attackType);
+// Code to perform the magic attack and damage the target
+magicPower -= getMagicCost(attackType);
+std::cout << "You performed an attack with " << getMagicName(attackType) << " and dealt " << damage << " damage!" << std::endl;
+}
+else {
+std::cout << "You do not have enough magic power to perform this attack." << std::endl;
+}
+}
+
+// Method to get the name of a magic attack
+std::string getMagicName(int attackType) {
+switch(attackType) {
+case 1:
+return "Fireball";
+case 2:
+return "Ice Storm";
+case 3:
+return "Thunderbolt";
+default:
+return "Unknown Magic";
+}
+}
+
+// Method to get the damage of a magic attack
+int getMagicDamage(int attackType) {
+switch(attackType) {
+case 1:
+return 20;
+case 2:
+return 30;
+case 3:
+return 40;
+default:
+return 0;
+}
+}
+
+// Method to get the cost of a magic attack
+int getMagicCost(int attackType) {
+switch(attackType) {
+case 1:
+return 10;
+case 2:
+return 20;
+case 3:
+return 30;
+default:
+return 0;
+}
+}
+};
+
+int main() {
+// Define the player character
+Player player("John");
+
+// Handle player input to attack with magic
+while(true) {
+if(/* player presses '1', '2', or '3' keys */) {
+int attackType = /* get the attack type from player input */;
+player.attack(attackType);
+}
+}
+
+return 0;
+}
+```
+  ```
+// Define the player class
+class Player {
+public:
+std::string name;
+int level;
+int experience;
+int health;
+int magicPower;
+std::vector<std::string> inventory;
+
+// Constructor to set default values
+Player(std::string name) {
+this->name = name;
+this->level = 1;
+this->experience = 0;
+this->health = 100;
+this->magicPower = 50;
+this->inventory = {"Potion", "Elixir", "Key"};
+}
+
+// Method to display the player information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Level: " << level << std::endl;
+std::cout << "Experience: " << experience << std::endl;
+std::cout << "Health: " << health << std::endl;
+std::cout << "Magic Power: " << magicPower << std::endl;
+std::cout << "Inventory: ";
+for(std::string item : inventory) {
+std::cout << item << ", ";
+}
+std::cout << std::endl;
+}
+
+// Method to attack with magic
+void attack(int attackType, Enemy& enemy) {
+if(magicPower >= getMagicCost(attackType)) {
+int damage = getMagicDamage(attackType);
+enemy.health -= damage;
+magicPower -= getMagicCost(attackType);
+std::cout << "You performed an attack with " << getMagicName(attackType) << " and dealt " << damage << " damage to " << enemy.name << "!" << std::endl;
+}
+else {
+std::cout << "You do not have enough magic power to perform this attack." << std::endl;
+}
+}
+
+// Method to run from a battle
+void run() {
+// Code to initiate running
+}
+
+// Method to heal
+void heal() {
+if(magicPower >= 40) {
+health += 10;
+magicPower -= 40;
+std::cout << "You used a Potion and healed 10 HP!" << std::endl;
+}
+}
+
+// Method to level up and gain experience
+void gainExperience(int experiencePoints) {
+experience += experiencePoints;
+if(experience >= level * 100) {
+level++;
+health += 10;
+magicPower += 5;
+std::cout << "You leveled up to level " << level << "!" << std::endl;
+}
+}
+
+// Method to manage the inventory
+void manageInventory() {
+// Code to manage the inventory
+}
+
+// Method to complete a quest
+void completeQuest() {
+int questID = 0;
+// Code to determine the quest ID
+if(/* player completes the quest */) {
+gainExperience(50);
+inventory.push_back("Reward Item");
+std::cout << "You completed the quest and received a Reward Item!" << std::endl;
+}
+}
+
+// Method to get the name of a magic attack
+std::string getMagicName(int attackType) {
+switch(attackType) {
+case 1:
+return "Fireball";
+case 2:
+return "Ice Storm";
+case 3:
+return "Thunderbolt";
+default:
+return "Unknown Magic";
+}
+}
+
+// Method to get the damage of a magic attack
+int getMagicDamage(int attackType) {
+switch(attackType) {
+case 1:
+return 20;
+case 2:
+return 30;
+case 3:
+return 40;
+default:
+return 0;
+}
+}
+
+// Method to get the cost of a magic attack
+int getMagicCost(int attackType) {
+switch(attackType) {
+case 1:
+return 10;
+case 2:
+return 20;
+case 3:
+return 30;
+default:
+return 0;
+}
+}
+};
+
+// Define the enemy class
+class Enemy {
+public:
+std::string name;
+int level;
+int health;
+int damage;
+
+// Constructor to set default values
+Enemy(std::string name, int level, int health, int damage) {
+this->name = name;
+this->level = level;
+this->health = health;
+this->damage = damage;
+}
+
+// Method to display the enemy information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Level: " << level << std::endl;
+std::cout << "Health: " << health << std::endl;
+std::cout << "Damage: " << damage << std::endl;
+}
+
+// Method for the enemy to attack the player
+void attack(Player& player) {
+player.health -= damage;
+std::cout << name << " attacked you and dealt " << damage << " damage!" << std::endl;
+}
+};
+
+int main() {
+// Define the player character and an enemy
+Player player("John");
+Enemy enemy("Goblin", 1, 30, 10);
+
+// Display the player and enemy information
+player.displayInfo();
+std::cout << std::endl;
+enemy.displayInfo();
+
+// Handle player input to attack with magic, run, heal, manage inventory, or complete a quest
+while(true) {
+if(/* player presses '1', '2', or '3' keys */) {
+int attackType = /* get the attack type from player input */;
+player.attack(attackType, enemy);
+if(enemy.health <= 0) {
+std::cout << "You defeated " << enemy.name << "!" << std::endl;
+player.gainExperience(enemy.level * 10);
+break;
+}
+enemy.attack(player);
+if(player.health <= 0) {
+std::cout << "You were defeated by " << enemy.name << "!" << std::endl;
+break;
+}
+}
+if(/* player presses 'l' key */) {
+player.run();
+}
+if(/* player presses '9' key */) {
+player.heal();
+}
+if(/* player presses 'i' key */) {
+player.manageInventory();
+}
+if(/* player completes a quest */) {
+player.completeQuest();
+}
+}
+
+return 0;
+}
+```
+```
+// Define the quest class
+class Quest {
+public:
+int questID;
+std::string title;
+std::string description;
+int experienceReward;
+std::string itemReward;
+bool isCompleted;
+
+// Constructor to set default values
+Quest(int questID, std::string title, std::string description, int experienceReward, std::string itemReward) {
+this->questID = questID;
+this->title = title;
+this->description = description;
+this->experienceReward = experienceReward;
+this->itemReward = itemReward;
+this->isCompleted = false;
+}
+
+// Method to display the quest information
+void displayInfo() {
+std::cout << "Quest ID: " << questID << std::endl;
+std::cout << "Title: " << title << std::endl;
+std::cout << "Description: " << description << std::endl;
+std::cout << "Experience Reward: " << experienceReward << std::endl;
+std::cout << "Item Reward: " << itemReward << std::endl;
+}
+};
+
+// Define the NPC class
+class NPC {
+public:
+std::string name;
+int questID;
+std::string dialogue;
+
+// Constructor to set default values
+NPC(std::string name, int questID, std::string dialogue) {
+this->name = name;
+this->questID = questID;
+this->dialogue = dialogue;
+}
+
+// Method to display the NPC information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Quest ID: " << questID << std::endl;
+std::cout << "Dialogue: " << dialogue << std::endl;
+}
+};
+
+int main() {
+// Define the player character, an enemy, a quest, and an NPC
+Player player("John");
+Enemy enemy("Goblin", 1, 30, 10);
+Quest quest(1, "Defeat the Goblin", "Defeat the Goblin in the nearby cave", 50, "Goblin Ear");
+NPC npc("Quest Giver", 1, "Hello adventurer, I have a quest for you. Can you help me defeat the Goblin in the nearby cave?");
+
+// Display the player and enemy information, the quest information, and the NPC information
+player.displayInfo();
+std::cout << std::endl;
+enemy.displayInfo();
+std::cout << std::endl;
+quest.displayInfo();
+std::cout << std::endl;
+npc.displayInfo();
+
+// Handle player input to attack with magic, run, heal, manage inventory, or complete a quest
+while(true) {
+if(/* player presses '1', '2', or '3' keys */) {
+int attackType = /* get the attack type from player input */;
+player.attack(attackType, enemy);
+if(enemy.health <= 0) {
+std::cout << "You defeated " << enemy.name << "!" << std::endl;
+player.gainExperience(enemy.level * 10);
+if(quest.questID == 1 && !quest.isCompleted) {
+player.inventory.push_back(quest.itemReward);
+player.gainExperience(quest.experienceReward);
+std::cout << "You completed the quest and received a " << quest.itemReward << "!" << std::endl;
+quest.isCompleted = true;
+}
+break;
+}
+enemy.attack(player);
+if(player.health <= 0) {
+std::cout << "You were defeated by " << enemy.name << "!" << std::endl;
+break;
+}
+}
+if(/* player presses 'l' key */) {
+player.run();
+}
+if(/* player presses '9' key */) {
+player.heal();
+}
+if(/* player presses 'i' key */) {
+player.manageInventory();
+}
+if(/* player completes a quest */) {
+player.completeQuest();
+}
+}
+
+return 0;
+}
+```
+  ```
+#include <iostream>
+#include <string>
+
+// Define the player class
+class Player {
+public:
+std::string name;
+int rank;
+int health;
+
+// Constructor to set default values
+Player(std::string name) {
+this->name = name;
+this->rank = 0;
+this->health = 100;
+}
+
+// Method to display the player information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Rank: ";
+switch(rank) {
+case 0:
+std::cout << "White";
+break;
+case 1:
+std::cout << "Purple";
+break;
+case 2:
+std::cout << "Gold";
+break;
+case 3:
+std::cout << "Rainbow";
+break;
+default:
+std::cout << "Unknown";
+break;
+}
+std::cout << std::endl;
+std::cout << "Health: " << health << std::endl;
+}
+
+// Method to set the player rank based on their name
+void setRank() {
+if(name == "natezackpro") {
+rank = 3; // Rainbow rank
+}
+else if(/* check if player is a clan master */) {
+rank = 1; // Purple rank
+}
+else if(/* check if player is the strongest on the server or game */) {
+rank = 2; // Gold rank
+}
+else {
+rank = 0; // White rank
+}
+}
+
+// Method to give the player a health bonus based on their rank
+void rankBonus() {
+switch(rank) {
+case 0:
+health += 0; // No bonus
+break;
+case 1:
+health += 25; // Purple bonus
+break;
+case 2:
+health += 50; // Gold bonus
+break;
+case 3:
+health += 100; // Rainbow bonus
+break;
+default:
+health += 0; // No bonus
+break;
+}
+}
+};
+
+int main() {
+// Create two players with different names
+Player player1("John");
+Player player2("natezackpro");
+
+// Set the player ranks based on their names
+player1.setRank();
+player2.setRank();
+
+// Give the players a rank bonus to their health
+player1.rankBonus();
+player2.rankBonus();
+
+// Display the player information
+player1.displayInfo();
+std::cout << std::endl;
+player2.displayInfo();
+
+return 0;
+}
+```
+     ```
+#include <iostream>
+#include <string>
+
+// Define the player class
+class Player {
+public:
+std::string name;
+int rank;
+int health;
+
+// Constructor to set default values
+Player(std::string name) {
+this->name = name;
+this->rank = 0;
+this->health = 100;
+}
+
+// Method to display the player information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Rank: ";
+switch(rank) {
+case 0:
+std::cout << "White";
+break;
+case 1:
+std::cout << "Purple";
+break;
+case 2:
+std::cout << "Gold";
+break;
+case 3:
+std::cout << "Rainbow";
+break;
+default:
+std::cout << "Unknown";
+break;
+}
+std::cout << std::endl;
+std::cout << "Health: " << health << std::endl;
+}
+
+// Method to set the player rank based on their name
+void setRank() {
+if(name == "shadow123") {
+rank = 3; // Rainbow rank
+}
+else if(/* check if player is a clan master */) {
+rank = 1; // Purple rank
+}
+else if(/* check if player is the strongest on the server or game */) {
+rank = 2; // Gold rank
+}
+else {
+rank = 0; // White rank
+}
+}
+
+// Method to give the player a health bonus based on their rank
+void rankBonus() {
+switch(rank) {
+case 0:
+health += 0; // No bonus
+break;
+case 1:
+health += 25; // Purple bonus
+break;
+case 2:
+health += 50; // Gold bonus
+break;
+case 3:
+health += 100; // Rainbow bonus
+break;
+default:
+health += 0; // No bonus
+break;
+}
+}
+};
+
+int main() {
+// Create a player with the name shadow123
+Player player("shadow123");
+
+// Set the player rank based on their name
+player.setRank();
+
+// Give the player a rank bonus to their health
+player.rankBonus();
+
+// Display the player information
+player.displayInfo();
+
+return 0;
+}
+```   
+// Handle pet following their owner
+while(true) {
+if(/* player moves and the pet is following its owner */) {
+// Code to move the pet with its owner
+}
+}
+
+return 0;
+}
+```
