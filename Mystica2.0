@@ -1,0 +1,2637 @@
+Main Menu:
+```
+#include <iostream>
+
+int main() {
+std::cout << "Welcome to Mystica!" << std::endl;
+std::cout << "Press P to Play" << std::endl;
+std::cout << "Press E to Exit" << std::endl;
+char input;
+std::cin >> input;
+switch(input) {
+case 'P':
+case 'p':
+// Start account creation or login process
+break;
+case 'E':
+case 'e':
+// Exit game
+break;
+default:
+// Unknown input, prompt again
+break;
+}
+return 0;
+}
+```
+
+Account Creation:
+```
+#include <iostream>
+#include <string>
+#include <vector>
+
+struct Account {
+std::string username;
+std::string password;
+std::vector<Character> characters;
+};
+
+struct Character {
+std::string name;
+std::string clothing;
+std::string magic;
+int level;
+int health;
+};
+
+int main() {
+std::vector<Account> accounts;
+std::string username;
+std::string password;
+std::cout << "Enter your desired username: ";
+std::cin >> username;
+for (auto account : accounts) {
+if (account.username == username) {
+std::cout << "That username is already taken. Please choose a different one.";
+std::cin >> username;
+break;
+}
+}
+std::cout << "Enter your desired password: ";
+std::cin >> password;
+Account newAccount;
+newAccount.username = username;
+newAccount.password = password;
+accounts.push_back(newAccount);
+// TODO: Save new account info to file or database
+// Continue to character creation menu
+return 0;
+}
+```
+
+Character Creation:
+```
+#include <iostream>
+#include <string>
+
+struct Character {
+std::string name;
+std::string clothing;
+std::string magic;
+int level;
+int health;
+};
+
+int main() {
+Character newCharacter;
+std::cout << "Enter your character name: ";
+std::cin >> newCharacter.name;
+std::cout << "Choose your clothing: ";
+std::cin >> newCharacter.clothing;
+std::cout << "Choose your magic: ";
+std::cin >> newCharacter.magic;
+newCharacter.level = 1;
+newCharacter.health = 100;
+// TODO: Save new character info to account
+// Show character stats and offer option to edit
+return 0;
+}
+```
+
+Game Loop:
+```
+#include <iostream>
+#include <string>
+#include <vector>
+
+struct Character {
+std::string name;
+std::string clothing;
+std::string magic;
+int level;
+int health;
+std::vector<std::string> inventory;
+};
+
+int main() {
+Character myCharacter;
+// TODO: Load character info from account
+std::cout << "Welcome, " << myCharacter.name << "!" << std::endl;
+while (myCharacter.health > 0 && myCharacter.level < 10) {
+std::cout << "What do you want to do?" << std::endl;
+std::cout << "1. Explore" << std::endl;
+std::cout << "2. Battle" << std::endl;
+std::cout << "3. Trade" << std::endl;
+std::cout << "4. Socialize" << std::endl;
+int choice;
+std::cin >> choice;
+switch (choice) {
+case 1:
+// Explore menu
+break;
+case 2:
+// Battle menu
+break;
+case 3:
+// Trade menu
+break;
+case 4:
+// Socialize menu
+break;
+default:
+std::cout << "Invalid choice. Please choose again." << std::endl;
+break;
+}
+}
+// TODO: Check win or lose conditions
+// Display final stats and offer option to play again or exit
+return 0;
+}
+```
+```
+#include <iostream>
+#include <string>
+#include <vector>
+#include <chrono>
+#include <thread>
+
+class MagicAttack {
+public:
+std::string name;
+int power;
+std::string description;
+
+MagicAttack(std::string name, int power, std::string description) {
+this->name = name;
+this->power = power;
+this->description = description;
+}
+
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Power: " << power << std::endl;
+std::cout << "Description: " << description << std::endl;
+}
+};
+
+class Magic {
+public:
+std::vector<MagicAttack> attacks;
+
+void addAttack(MagicAttack attack) {
+attacks.push_back(attack);
+}
+
+void displayAttacks() {
+std::cout << "Magic Attacks:" << std::endl;
+for (MagicAttack attack : attacks) {
+std::cout << "- " << attack.name << std::endl;
+}
+}
+
+MagicAttack selectAttack() {
+std::cout << "Select a magic attack:" << std::endl;
+displayAttacks();
+
+std::string input;
+std::cin >> input;
+
+for (MagicAttack attack : attacks) {
+if (attack.name == input) {
+return attack;
+}
+}
+
+std::cout << "Invalid selection." << std::endl;
+return MagicAttack("", 0, "");
+}
+};
+
+int main() {
+Magic fireMagic;
+fireMagic.addAttack(MagicAttack("Fireball", 50, "A fiery ball that explodes on impact."));
+fireMagic.addAttack(MagicAttack("Flame Burst", 35, "A burst of flames that engulfs the target."));
+
+Magic waterMagic;
+waterMagic.addAttack(MagicAttack("Water Jet", 40, "A powerful jet of water that knocks back the target."));
+waterMagic.addAttack(MagicAttack("Tidal Wave", 60, "A massive wave that crashes down on the target."));
+
+Magic iceMagic;
+iceMagic.addAttack(MagicAttack("Ice Shard", 30, "A sharp shard of ice that pierces the target."));
+iceMagic.addAttack(MagicAttack("Blizzard", 55, "A flurry of snow and ice that reduces visibility and deals damage."));
+
+Magic earthMagic;
+earthMagic.addAttack(MagicAttack("Rock Throw", 45, "A heavy rock that is thrown at the target."));
+earthMagic.addAttack(MagicAttack("Earthquake", 70, "A powerful shockwave that damages everything in the area."));
+
+Magic airMagic;
+airMagic.addAttack(MagicAttack("Gust", 25, "A strong gust of wind that knocks the target back."));
+airMagic.addAttack(MagicAttack("Tornado", 65, "A massive tornado that sucks up everything in its path."));
+
+Magic windMagic;
+windMagic.addAttack(MagicAttack("Wind Blade", 35, "A sharp blade of wind that cuts through the target."));
+windMagic.addAttack(MagicAttack("Cyclone", 55, "A whirlwind that traps and damages the target."));
+
+Magic stormMagic;
+stormMagic.addAttack(MagicAttack("Thunderbolt", 50, "A bolt of lightning that strikes the target."));
+stormMagic.addAttack(MagicAttack("Storm Surge", 80, "A surge of electrical energy that damages everything in the area."));
+
+Magic skyMagic;
+skyMagic.addAttack(MagicAttack("Sky Beam", 60, "A beam of light that pierces the target."));
+skyMagic.addAttack(MagicAttack("Celestial Strike", 90, "A powerful burst of energy from the heavens that damages everything in the area."));
+
+Magic celestialMagic;
+celestialMagic.addAttack(MagicAttack("Starfall", 65, "A shower of stars that damages everything in the area."));
+celestialMagic.addAttack(MagicAttack("Heavenly Blast", 100, "A blast of divine energy that damages everything in the area."));
+
+Magic spiritMagic;
+spiritMagic.addAttack(MagicAttack("Spirit Beam", 40, "A beam of spiritual energy that damages the target."));
+spiritMagic.addAttack(MagicAttack("Spectral Strike", 75, "A strike of spectral energy that damages everything in the area."));
+
+Magic poisonMagic;
+poisonMagic.addAttack(MagicAttack("Venomous Bite", 20, "A bite that injects poison into the target."));
+poisonMagic.addAttack(MagicAttack("Toxic Cloud", 45, "A cloud of toxic gas that damages and poisons everything in the area."));
+
+Magic acidMagic;
+acidMagic.addAttack(MagicAttack("Acid Spray", 30, "A spray of acid that damages and corrodes the target."));
+acidMagic.addAttack(MagicAttack("Corrosive Blast", 55, "A blast of corrosive acid that damages everything in the area."));
+
+Magic bloodMagic;
+bloodMagic.addAttack(MagicAttack("Blood Drain", 25, "A drain of blood that damages the target and heals the user."));
+bloodMagic.addAttack(MagicAttack("Blood Sacrifice", 70, "A sacrifice of blood that damages everything in the area and greatly heals the user."));
+```
+#include <iostream>
+#include <string>
+#include <chrono> // for timing
+
+using namespace std;
+
+// Define the custom magic class
+class CustomMagic {
+public:
+string name;
+int power;
+string description;
+
+CustomMagic() {
+name = "Unnamed Magic";
+power = 0;
+description = "No description";
+}
+
+CustomMagic(string name, int power, string description) {
+this->name = name;
+this->power = power;
+this->description = description;
+}
+
+void displayInfo() {
+cout << "Magic Name: " << name << endl;
+cout << "Magic Power: " << power << endl;
+cout << "Magic Description: " << description << endl;
+}
+};
+
+int main() {
+int timer = 0;
+bool qKeyPressed = false;
+bool oneKeyPressed = false;
+bool customMagicUnlocked = false;
+CustomMagic customMagic;
+
+cout << "Welcome to the Magic Customization Program!" << endl;
+
+while (true) {
+// Check if q key is pressed
+if (GetKeyState('Q') & 0x8000 && !qKeyPressed) {
+qKeyPressed = true;
+timer = 0;
+cout << "Q key pressed. Hold Q and 1 for 3 seconds to unlock custom magic." << endl;
+}
+else if (!(GetKeyState('Q') & 0x8000) && qKeyPressed) {
+qKeyPressed = false;
+cout << "Q key released." << endl;
+}
+
+// Check if 1 key is pressed and q key is still pressed
+if (GetKeyState('1') & 0x8000 && qKeyPressed) {
+oneKeyPressed = true;
+cout << "1 key pressed." << endl;
+
+// Start timer for 3 seconds
+auto startTime = chrono::high_resolution_clock::now();
+
+while (oneKeyPressed && timer < 3000) {
+auto currentTime = chrono::high_resolution_clock::now();
+auto elapsedTime = chrono::duration_cast<chrono::milliseconds>(currentTime - startTime).count();
+timer = static_cast<int>(elapsedTime);
+}
+
+if (timer >= 3000) {
+customMagicUnlocked = true;
+cout << "Custom Magic Unlocked!" << endl;
+}
+}
+else if (!(GetKeyState('1') & 0x8000) && oneKeyPressed) {
+oneKeyPressed = false;
+cout << "1 key released." << endl;
+}
+
+// If custom magic is unlocked, prompt user to enter magic details
+if (customMagicUnlocked) {
+string name, description;
+int power;
+
+cout << "Enter Magic Details:" << endl;
+cout << "Name: ";
+getline(cin, name);
+cout << "Power: ";
+cin >> power;
+cin.ignore(); // ignore newline character
+cout << "Description: ";
+getline(cin, description);
+
+customMagic = CustomMagic(name, power, description);
+customMagic.displayInfo();
+
+break; // exit program
+}
+}
+
+return 0;
+}
+```
+public class PlayerController : MonoBehaviour
+{
+public KeyCode inventoryKey = KeyCode.D;
+public GameObject diamondPickaxe;
+public GameObject wand;
+private List<string> inventory = new List<string> { "Diamond Pickaxe", "Wand" };
+private RaycastHit hit;
+
+void Start()
+{
+diamondPickaxe.SetActive(true);
+wand.SetActive(true);
+}
+
+void Update()
+{
+if (Input.GetKeyDown(inventoryKey))
+{
+Debug.Log("Inventory:");
+foreach (string item in inventory)
+{
+Debug.Log("- " + item);
+}
+}
+
+if (Input.GetMouseButtonDown(0) && Physics.Raycast(transform.position, transform.forward, out hit))
+{
+if (hit.collider.gameObject.CompareTag("Mountain"))
+{
+string material = GetRandomMaterial();
+Debug.Log("You mined " + material + " from the mountain.");
+inventory.Add(material);
+}
+}
+}
+
+string GetRandomMaterial()
+{
+string[] materials = { "Iron", "Gold", "Copper", "Silver" }; // add more materials here
+int randomIndex = Random.Range(0, materials.Length);
+return materials[randomIndex];
+}
+}
+``````cpp
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Define the different types of shops
+enum ShopType {
+Weapon,
+Armor,
+Potion,
+Magic
+};
+
+// Define the shop class
+class Shop {
+public:
+string name;
+ShopType type;
+vector<string> inventory;
+int goldCoins;
+
+// Constructor to set default values
+Shop(string name, ShopType type) {
+this->name = name;
+this->type = type;
+this->goldCoins = 1000;
+}
+
+// Method to display the shop information
+void displayInfo() {
+cout << "Shop Name: " << name << endl;
+cout << "Shop Type: ";
+switch(type) {
+case Weapon:
+cout << "Weapon" << endl;
+break;
+case Armor:
+cout << "Armor" << endl;
+break;
+case Potion:
+cout << "Potion" << endl;
+break;
+case Magic:
+cout << "Magic" << endl;
+break;
+default:
+cout << "Unknown" << endl;
+break;
+}
+cout << "Gold Coins: " << goldCoins << endl;
+cout << "Inventory (" << inventory.size() << " items):" << endl;
+for(int i = 0; i < inventory.size(); i++) {
+cout << "- " << inventory[i] << endl;
+}
+cout << endl;
+}
+
+// Method to buy an item from the shop
+bool buyItem(string item, int price) {
+// Check if the shop has the item in stock
+if(find(inventory.begin(), inventory.end(), item) == inventory.end()) {
+cout << "Sorry, we don't have that item in stock." << endl;
+return false;
+}
+
+// Check if the player has enough gold coins to buy the item
+if(price > goldCoins) {
+cout << "Sorry, you don't have enough gold coins to buy that item." << endl;
+return false;
+}
+
+// Subtract the item price from the shop's gold coins and add the item to the player's inventory
+goldCoins -= price;
+inventory.erase(find(inventory.begin(), inventory.end(), item));
+return true;
+}
+
+// Method to sell an item to the shop
+bool sellItem(string item, int price) {
+// Check if the player has the item in their inventory
+if(find(inventory.begin(), inventory.end(), item) == inventory.end()) {
+cout << "Sorry, you don't have that item in your inventory." << endl;
+return false;
+}
+
+// Add the item price to the shop's gold coins and remove the item from the player's inventory
+goldCoins += price;
+inventory.push_back(item);
+return true;
+}
+};
+
+// Define the healing center class
+class HealingCenter {
+public:
+int goldCoins;
+
+// Constructor to set default values
+HealingCenter() {
+this->goldCoins = 1000;
+}
+
+// Method to display the healing center information
+void displayInfo() {
+cout << "Healing Center" << endl;
+cout << "Gold Coins: " << goldCoins << endl;
+}
+
+// Method to heal the player for a cost of 50 gold coins
+void healPlayer(int& health) {
+if(goldCoins >= 50) {
+health = 100;
+goldCoins -= 50;
+cout << "You have been healed to full health for 50 gold coins." << endl;
+} else {
+cout << "Sorry, you don't have enough gold coins to heal." << endl;
+}
+}
+};
+
+int main() {
+// Create the shops and add items to their inventories
+Shop weaponShop("Weapon Shop", Weapon);
+weaponShop.inventory.push_back("Sword");
+weaponShop.inventory.push_back("Bow");
+weaponShop.inventory.push_back("Axe");
+
+Shop armorShop("Armor Shop", Armor);
+armorShop.inventory.push_back("Steel Armor");
+armorShop.inventory.push_back("Leather Armor");
+armorShop.inventory.push_back("Chainmail");
+
+Shop potionShop("Potion Shop", Potion);
+potionShop.inventory.push_back("Health Potion");
+potionShop.inventory.push_back("Mana Potion");
+potionShop.inventory.push_back("Stamina Potion");
+
+Shop magicShop("Magic Shop", Magic);
+magicShop.inventory.push_back("Fireball Scroll");
+magicShop.inventory.push_back("Frost Nova Scroll");
+magicShop.inventory.push_back("Thunderbolt Scroll");
+
+// Create the healing center
+HealingCenter healingCenter;
+
+// Display the village information
+cout << "Welcome to the Starting Village!" << endl;
+cout << "There are 20 houses, 4 shops, and 1 healing center." << endl;
+cout << endl;
+
+// Display the shop information
+weaponShop.displayInfo();
+armorShop.displayInfo();
+potionShop.displayInfo();
+magicShop.displayInfo();
+
+// Display the healing center information
+healingCenter.displayInfo();
+
+// Handle player input to interact with the shops and healing center
+while(true) {
+cout << "What would you like to do?" << endl;
+cout << "1. Buy an item from a shop" << endl;
+cout << "2. Sell an item to a shop" << endl;
+cout << "3. Heal at the healing center" << endl;
+cout << "4. Quit" << endl;
+
+int choice;
+cin >> choice;
+
+if(choice == 1) {
+cout << "Which shop would you like to buy from?" << endl;
+cout << "1. Weapon Shop" << endl;
+cout << "2. Armor Shop" << endl;
+cout << "3. Potion Shop" << endl;
+cout << "4. Magic Shop" << endl;
+
+int shopChoice;
+cin >> shopChoice;
+
+Shop* shop;
+switch(shopChoice) {
+case 1:
+shop = &weaponShop;
+break;
+case 2:
+shop = &armorShop;
+break;
+case 3:
+shop = &potionShop;
+break;
+case 4:
+shop = &magicShop;
+break;
+default:
+cout << "Invalid choice." << endl;
+continue;
+}
+
+cout << "What item would you like to buy?" << endl;
+for(int i = 0; i < shop->inventory.size(); i++) {
+cout << i + 1 << ". " << shop->inventory[i] << " (" << 30 << " gold coins)" << endl;
+}
+
+int itemChoice;
+cin >> itemChoice;
+
+if(shop->buyItem(shop->inventory[itemChoice - 1], 30)) {
+cout << "You bought a " << shop->inventory[itemChoice - 1] << " for 30 gold coins." << endl;
+}
+} else if(choice == 2) {
+cout << "Which shop would you like to sell to?" << endl;
+cout << "1. Weapon Shop" << endl;
+cout << "2. Armor Shop" << endl;
+cout << "3. Potion Shop" << endl;
+cout << "4. Magic Shop" << endl;
+
+int shopChoice;
+cin >> shopChoice;
+
+Shop* shop;
+switch(shopChoice) {
+case 1:
+shop = &weaponShop;
+break;
+case 2:
+shop = &armorShop;
+break;
+case 3:
+shop = &potionShop;
+break;
+case 4:
+shop = &magicShop;
+break;
+default:
+cout << "Invalid choice." << endl;
+continue;
+}
+
+cout << "What item would you like to sell?" << endl;
+for(int i = 0; i < shop->inventory.size(); i++) {
+cout << i + 1 << ". " << shop->inventory[i] << " (" << 10 << " gold coins)" << endl;
+}
+
+int itemChoice;
+cin >> itemChoice;
+
+if(shop->sellItem(shop->inventory[itemChoice - 1], 10)) {
+cout << "You sold a " << shop->inventory[itemChoice - 1] << " for 10 gold coins." << endl;
+}
+} else if(choice == 3) {
+healingCenter.healPlayer(100);
+} else if(choice == 4) {
+break;
+} else {
+cout << "Invalid choice." << endl;
+}
+
+cout << endl;
+}
+
+return 0;
+}
+```// Define the player class
+class Player {
+public:
+std::string name;
+int healthPoints;
+int magicType;
+int inventory[100]; // Inventory size set to 100
+
+// Constructor to set default values
+Player(std::string name) {
+this->name = name;
+this->healthPoints = 100;
+this->magicType = 0;
+}
+
+// Method to move the player forward
+void moveForward(float distance) {
+z += distance;
+}
+
+// Method to move the player backward
+void moveBackward(float distance) {
+z -= distance;
+}
+
+// Method to move the player left
+void moveLeft(float distance) {
+x -= distance;
+}
+
+// Method to move the player right
+void moveRight(float distance) {
+x += distance;
+}
+
+// Method to attack a monster
+void attack(Monster& monster, int damage) {
+monster.attack(damage);
+}
+
+// Method to respawn the player
+void respawn() {
+// Check if the player has a house
+if(hasHouse()) {
+// Respawn near the house
+x = houseX;
+y = houseY;
+z = houseZ;
+}
+// Check if the player is in a clan
+else if(isInClan()) {
+// Respawn near the clan's location
+x = clanX;
+y = clanY;
+z = clanZ;
+}
+else {
+// Respawn in the middle of the town
+x = townX;
+y = townY;
+z = townZ;
+}
+
+// Reset the player's health points
+healthPoints = 100;
+}
+
+// Method to check if the left shift key is held down
+bool isRunning() {
+// Code to check if the left shift key is held down
+}
+
+// Method to check if the 'r' key is clicked
+bool isRolling() {
+// Code to check if the 'r' key is clicked
+}
+
+private:
+// Private variables to store the player's house and clan information
+bool hasHouse() {
+/* code to check if the player has a house */
+}
+
+float houseX;
+float houseY;
+float houseZ;
+
+bool isInClan() {
+/* code to check if the player is in a clan */
+}
+
+float clanX;
+float clanY;
+float clanZ;
+
+// Private variables to store the town location
+float townX;
+float townY;
+float townZ;
+
+};
+
+int main() {
+// Create a new player
+Player myPlayer("John");
+
+// Move the player forward
+myPlayer.moveForward(1.0f);
+
+// Move the player left
+myPlayer.moveLeft(0.5f);
+
+// Move the player backward
+myPlayer.moveBackward(2.0f);
+
+// Move the player right
+myPlayer.moveRight(0.5f);
+
+// Check if the left shift key is held down
+if(myPlayer.isRunning()) {
+// Code for the player to run
+}
+
+// Check if the 'r' key is clicked
+if(myPlayer.isRolling()) {
+// Code for the player to roll
+}
+
+return 0;
+}```
+#include <iostream>
+#include <string>
+#include <vector>
+
+// Define the player class
+class Player {
+public:
+std::string name;
+int level;
+int experience;
+int health;
+int magicPower;
+std::vector<std::string> inventory;
+
+// Constructor to set default values
+Player(std::string name) {
+this->name = name;
+this->level = 1;
+this->experience = 0;
+this->health = 100;
+this->magicPower = 50;
+this->inventory = {"Potion", "Elixir", "Key"};
+}
+
+// Method to display the player information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Level: " << level << std::endl;
+std::cout << "Experience: " << experience << std::endl;
+std::cout << "Health: " << health << std::endl;
+std::cout << "Magic Power: " << magicPower << std::endl;
+std::cout << "Inventory: ";
+for(std::string item : inventory) {
+std::cout << item << ", ";
+}
+std::cout << std::endl;
+}
+
+// Method to attack with magic
+void attack(int attackType, Enemy& enemy) {
+if(magicPower >= getMagicCost(attackType)) {
+int damage = getMagicDamage(attackType);
+enemy.health -= damage;
+magicPower -= getMagicCost(attackType);
+std::cout << "You performed an attack with " << getMagicName(attackType) << " and dealt " << damage << " damage to " << enemy.name << "!" << std::endl;
+} else {
+std::cout << "You do not have enough magic power to perform this attack." << std::endl;
+}
+}
+
+// Method to run from a battle
+void run() {
+// Code to initiate running
+}
+
+// Method to heal
+void heal() {
+if(magicPower >= 40) {
+health += 10;
+magicPower -= 40;
+std::cout << "You used a Potion and healed 10 HP!" << std::endl;
+}
+}
+
+// Method to level up and gain experience
+void gainExperience(int experiencePoints) {
+experience += experiencePoints;
+if(experience >= level * 100) {
+level++;
+health += 10;
+magicPower += 5;
+std::cout << "You leveled up to level " << level << "!" << std::endl;
+}
+}
+
+// Method to manage the inventory
+void manageInventory() {
+// Code to manage the inventory
+}
+
+// Method to complete a quest
+void completeQuest() {
+int questID = 0;
+// Code to determine the quest ID
+if(/* player completes the quest */) {
+gainExperience(50);
+inventory.push_back("Reward Item");
+std::cout << "You completed the quest and received a Reward Item!" << std::endl;
+}
+}
+
+// Method to get the name of a magic attack
+std::string getMagicName(int attackType) {
+switch(attackType) {
+case 1: return "Fireball";
+case 2: return "Ice Storm";
+case 3: return "Thunderbolt";
+default: return "Unknown Magic";
+}
+}
+
+// Method to get the damage of a magic attack
+int getMagicDamage(int attackType) {
+switch(attackType) {
+case 1: return 20;
+case 2: return 30;
+case 3: return 40;
+default: return 0;
+}
+}
+
+// Method to get the cost of a magic attack
+int getMagicCost(int attackType) {
+switch(attackType) {
+case 1: return 10;
+case 2: return 20;
+case 3: return 30;
+default: return 0;
+}
+}
+};
+
+// Define the enemy class
+class Enemy {
+public:
+std::string name;
+int level;
+int health;
+int damage;
+
+// Constructor to set default values
+Enemy(std::string name, int level, int health, int damage) {
+this->name = name;
+this->level = level;
+this->health = health;
+this->damage = damage;
+}
+
+// Method to display the enemy information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Level: " << level << std::endl;
+std::cout << "Health: " << health << std::endl;
+std::cout << "Damage: " << damage << std::endl;
+}
+
+// Method for the enemy to attack the player
+void attack(Player& player) {
+player.health -= damage;
+std::cout << name << " attacked you and dealt " << damage << " damage!" << std::endl;
+}
+};
+
+// Define the NPC class
+class NPC {
+public:
+std::string name;
+int health;
+int damage;
+
+// Constructor to set default values
+NPC(std::string name, int health, int damage) {
+this->name = name;
+this->health = health;
+this->damage = damage;
+}
+
+// Method for the NPC to attack the player
+void attack(Player& player) {
+player.health -= damage;
+std::cout << name << " attacked you and dealt " << damage << " damage!" << std::endl;
+}
+};
+
+int main() {
+// Define the player character and an enemy
+Player player("John");
+Enemy enemy("Goblin", 1, 20, 5);
+
+// Handle player input to attack with magic or run from battle
+while(true) {
+char input;
+std::cout << "Press '1', '2', or '3' to attack with magic, 'l' to run, '9' to heal, 'i' to manage inventory, or 'q' to quit." << std::endl;
+std::cin >> input;
+if(input == 'q') {
+break;
+}
+if(input == '1' || input == '2' || input == '3') {
+int attackType = input - '0';
+player.attack(attackType, enemy);
+enemy.attack(player);
+if(enemy.health <= 0) {
+std::cout << "You defeated " << enemy.name << " and gained 20 experience points!" << std::endl;
+player.gainExperience(20);
+break;
+}
+}
+if(input == 'l') {
+player.run();
+break;
+}
+if(input == '9') {
+player.heal();
+enemy.attack(player);
+}
+if(input == 'i') {
+player.manageInventory();
+}
+}
+
+// Define an NPC and handle their AI to attack the player
+NPC npc("Shopkeeper", 50, 0);
+while(true) {
+npc.attack(player);
+if(player.health <= 0) {
+std::cout << "You have been defeated!" << std::endl;
+break;
+}
+}
+
+return 0;
+}
+```
+```
+class Werewolf {
+public:
+int health;
+int damage;
+float speed;
+
+void move() {
+// Code to move the werewolf towards the player
+}
+
+void attack() {
+// Code to make the werewolf attack the player
+}
+};
+```
+```
+class MoonShadowWolf {
+public:
+int health;
+int damage;
+float speed;
+bool isTamed;
+
+void move() {
+// Code to move the moon shadow wolf towards the player
+}
+
+void attack() {
+// Code to make the moon shadow wolf attack the player
+}
+
+void tame(int magicType) {
+if (magicType == MOON_MAGIC && !isTamed) {
+// Code to tame the moon shadow wolf
+isTamed = true;
+}
+}
+};
+
+class SunCat {
+public:
+int health;
+int damage;
+float speed;
+bool isTamed;
+
+void move() {
+// Code to move the sun cat towards the player
+}
+
+void attack() {
+// Code to make the sun cat attack the player
+}
+
+void tame(int magicType) {
+if (magicType == SUN_MAGIC && !isTamed) {
+// Code to tame the sun cat
+isTamed = true;
+}
+}
+};
+```
+```
+class Enemy {
+public:
+std::string name;
+int health;
+int damage;
+int level;
+int defense;
+bool isAlive;
+
+Enemy(std::string name, int health, int damage, int level, int defense) {
+this->name = name;
+this->health = health;
+this->damage = damage;
+this->level = level;
+this->defense = defense;
+isAlive = true;
+}
+
+void attack(Player& player) {
+int damageDealt = damage - player.defense;
+if (damageDealt <= 0) {
+damageDealt = 1;
+}
+player.health -= damageDealt;
+std::cout << name << " attacked you for " << damageDealt << " damage!" << std::endl;
+if (player.health <= 0) {
+std::cout << "You have been defeated by " << name << "!" << std::endl;
+return;
+}
+}
+
+void defend() {
+// Code to make the enemy defend against the player's attack
+}
+
+void die() {
+isAlive = false;
+// Code to remove the enemy from the game world and drop any loot
+}
+};
+
+class Player {
+public:
+std::string name;
+int health;
+int damage;
+int level;
+int defense;
+int experience;
+int gold;
+bool isAlive;
+
+Player(std::string name) {
+this->name = name;
+health = 100;
+damage = 10;
+level = 1;
+defense = 5;
+experience = 0;
+gold = 0;
+isAlive = true;
+}
+
+void attack(Enemy& enemy) {
+int damageDealt = damage - enemy.defense;
+if (damageDealt <= 0) {
+damageDealt = 1;
+}
+enemy.health -= damageDealt;
+std::cout << "You attacked " << enemy.name << " for " << damageDealt << " damage!" << std::endl;
+if (enemy.health <= 0) {
+std::cout << "You defeated " << enemy.name << "!" << std::endl;
+gainExperience(enemy.level * 10);
+gold += enemy.level * 50;
+enemy.die();
+return;
+}
+enemy.attack(*this);
+}
+
+void defend() {
+// Code to make the player defend against the enemy's attack
+}
+
+void gainExperience(int amount) {
+experience += amount;
+std::cout << "You gained " << amount << " experience points!" << std::endl;
+if (experience >= level * 100) {
+levelUp();
+}
+}
+
+void levelUp() {
+level++;
+health += 10;
+damage += 5;
+defense += 2;
+std::cout << "You have leveled up! You are now level " << level << "." << std::endl;
+}
+
+void heal() {
+// Code to make the player heal themselves
+}
+
+void manageInventory() {
+// Code to manage the player's inventory and equipment
+}
+};
+
+int main() {
+Player player("John");
+Enemy enemy("Goblin", 30, 5, 1, 2);
+
+while (player.isAlive && enemy.isAlive) {
+std::cout << "Your health: " << player.health << std::endl;
+std::cout << enemy.name << "'s health: " << enemy.health << std::endl;
+std::cout << "1. Attack" << std::endl;
+std::cout << "2. Defend" << std::endl;
+std::cout << "3. Heal" << std::endl;
+std::cout << "4. Manage inventory" << std::endl;
+
+int choice;
+std::cin >> choice;
+
+switch (choice) {
+case 1:
+player.attack(enemy);
+break;
+case 2:
+player.defend();
+break;
+case 3:
+player.heal();
+break;
+case 4:
+player.manageInventory();
+break;
+default:
+std::cout << "Invalid choice!" << std::endl;
+break;
+}
+}
+
+return 0;
+}
+```
+```
+// Define the player class
+class Player {
+public:
+std::string name;
+int health;
+int goldCoins;
+Guild* guild;
+
+Player(std::string name) {
+this->name = name;
+this->health = 100;
+this->goldCoins = 0;
+this->guild = nullptr;
+}
+
+void attack(Enemy& enemy, int attackType) {
+int damage = getMagicDamage(attackType);
+int cost = getMagicCost(attackType);
+
+if (magicPower >= cost) {
+enemy.health -= damage;
+magicPower -= cost;
+std::cout << "You attacked " << enemy.name << " and dealt " << damage << " damage!" << std::endl;
+
+if (enemy.health <= 0) {
+std::cout << "You defeated " << enemy.name << "!" << std::endl;
+
+// Check if player can join/make a guild
+if (goldCoins >= 3000) {
+std::string input;
+std::cout << "You can either join a guild for free or create your own guild for 3000 gold coins. Would you like to join or create a guild? (enter 'join' or 'create') ";
+std::cin >> input;
+
+if (input == "join") {
+// Code to join a guild
+std::cout << "You joined a guild!" << std::endl;
+} else if (input == "create") {
+// Code to create a guild
+goldCoins -= 3000;
+guild = new Guild(this);
+std::cout << "You created a guild!" << std::endl;
+}
+} else {
+std::cout << "You need at least 3000 gold coins to create a guild!" << std::endl;
+}
+}
+} else {
+std::cout << "Not enough magic power to perform this attack!" << std::endl;
+}
+}
+
+void joinGuild() {
+// Code to join a guild
+std::cout << "You joined a guild!" << std::endl;
+}
+
+int getMagicDamage(int attackType) {
+switch (attackType) {
+case 1:
+return 20;
+case 2:
+return 30;
+case 3:
+return 40;
+default:
+return 0;
+}
+}
+
+int getMagicCost(int attackType) {
+switch (attackType) {
+case 1:
+return 10;
+case 2:
+return 20;
+case 3:
+return 30;
+default:
+return 0;
+}
+}
+};
+
+int main() {
+// Define the player character and an enemy
+Player player("John");
+Enemy enemy("Goblin", 1, 30, 10);
+
+// Attack the enemy
+player.attack(enemy, 1);
+
+return 0;
+}
+`````c++
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+// Define the different types of pets
+enum PetType {
+SunCat,
+MoonCat,
+HalloweenCat,
+// Add additional pet types here
+};
+
+// Define the pet class
+class Pet {
+public:
+std::string name;
+PetType type;
+int level;
+int experience;
+int health;
+int attack;
+int magic;
+bool isTamed;
+bool isFollowing;
+
+// Constructor to set default values
+Pet() {
+name = "Default Pet";
+type = PetType::SunCat;
+level = 1;
+experience = 0;
+health = 10;
+attack = 5;
+magic = 5;
+isTamed = false;
+isFollowing = false;
+}
+
+// Method to display pet information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Type: " << type << std::endl;
+std::cout << "Level: " << level << std::endl;
+std::cout << "Experience: " << experience << std::endl;
+std::cout << "Health: " << health << std::endl;
+std::cout << "Attack: " << attack << std::endl;
+std::cout << "Magic: " << magic << std::endl;
+if (isTamed) {
+std::cout << "Tamed: Yes" << std::endl;
+} else {
+std::cout << "Tamed: No" << std::endl;
+}
+if (isFollowing) {
+std::cout << "Following: Yes" << std::endl;
+} else {
+std::cout << "Following: No" << std::endl;
+}
+}
+
+// Method to increase pet level and gain experience
+void gainExperience(int experiencePoints) {
+experience += experiencePoints;
+if (experience >= level * 100) {
+level++;
+health += 5;
+attack += 2;
+magic += 2;
+}
+}
+
+// Method to tame the pet
+void tame() {
+isTamed = true;
+}
+
+// Method to make the pet follow the player
+void follow() {
+isFollowing = true;
+}
+
+// Method to make the pet stay in place
+void stay() {
+isFollowing = false;
+}
+};
+
+// Define the cave class
+class Cave {
+public:
+std::string name;
+int difficulty;
+std::vector<Pet> pets;
+std::vector<std::string> loot;
+
+// Constructor to set default values
+Cave() {
+name = "Default Cave";
+difficulty = 1;
+pets = {};
+loot = {"Gold Coin", "Diamond", "Ruby"};
+}
+
+// Method to add a pet to the cave
+void addPet(Pet pet) {
+pets.push_back(pet);
+}
+
+// Method to remove a pet from the cave
+void removePet(Pet pet) {
+auto it = std::find(pets.begin(), pets.end(), pet);
+if (it != pets.end()) {
+pets.erase(it);
+}
+}
+
+// Method to display the available pets in the cave
+void displayAvailablePets() {
+std::cout << "Available pets in " << name << ":" << std::endl;
+for (Pet pet : pets) {
+pet.displayInfo();
+}
+}
+
+// Method to display the available loot in the cave
+void displayAvailableLoot() {
+std::cout << "Available loot in " << name << ":" << std::endl;
+for (std::string item : loot) {
+std::cout << "- " << item << std::endl;
+}
+}
+};
+
+int main() {
+// Create some pets
+Pet sunCat;
+sunCat.name = "Sun Cat";
+sunCat.type = PetType::SunCat;
+
+Pet moonCat;
+moonCat.name = "Moon Cat";
+moonCat.type = PetType::MoonCat;
+
+Pet halloweenCat;
+halloweenCat.name = "Halloween Cat";
+halloweenCat.type = PetType::HalloweenCat;
+
+// Create a cave
+Cave cave;
+cave.name = "Dark Cave";
+cave.difficulty = 2;
+cave.addPet(sunCat);
+cave.addPet(moonCat);
+cave.addPet(halloweenCat);
+
+// Display the available pets and loot in the cave
+cave.displayAvailablePets();
+cave.displayAvailableLoot();
+
+// Tame the sun cat and make it follow the player
+sunCat.tame();
+sunCat.follow();
+
+// Display the sun cat's information
+sunCat.displayInfo();
+
+return 0;
+}
+`````` #include <iostream> #include <vector> #include <string> #include <ctime> #include <cstdlib> // Define the player class 
+  class Player { public: std::string name; int healthPoints; int magicType; // Constructor to set default values Player() 
+  { name = "Default Player"; healthPoints = 100; magicType = 0; } // Method to display player information void displayInfo()
+  { std::cout << "Name: " << name << std::endl; std::cout << "Health Points: " << healthPoints << std::endl; std::cout <<
+  "Magic Type: " << magicType << std::endl; } // Method to attack a monster void attack(Monster& monster, int damage) {
+  monster.healthPoints -= damage; } // Method to heal void heal() { if(magicType >= 40) { healthPoints += 10; magicType
+  -= 40; std::cout << "You used a potion and healed 10 HP!" << std::endl; } } }; // Define the monster class class Monster 
+  { public: std::string name; int healthPoints; // Constructor to set default values Monster() { name = "Default Monster";
+  healthPoints = 0; } // Method to attack the player void attack(Player& player, int damage) { player.healthPoints -= damage;
+} }; // Define the cave class class Cave { public: std::vector<Monster> monsters; // Constructor to generate monsters randomly
+```c++
+#include <iostream>
+#include <string>
+#include <vector>
+
+// Define the magic class
+class Magic {
+public:
+std::string name;
+int damage;
+int cost;
+
+Magic(std::string name, int damage, int cost) {
+this->name = name;
+this->damage = damage;
+this->cost = cost;
+}
+};
+
+// Define the player class
+class Player {
+public:
+std::string name;
+int level;
+int experience;
+int health;
+int magicPower;
+std::vector<std::string> inventory;
+Magic magic1 = Magic("Fireball", 20, 10);
+Magic magic2 = Magic("Ice Storm", 30, 20);
+Magic magic3 = Magic("Thunderbolt", 40, 30);
+bool hasFairy = false;
+
+Player(std::string name) {
+this->name = name;
+level = 1;
+experience = 0;
+health = 100;
+magicPower = 50;
+}
+
+void attack(Magic magic, Player& target) {
+if(magicPower >= magic.cost) {
+target.health -= magic.damage;
+std::cout << name << " used " << magic.name << " and dealt " << magic.damage << " damage to " << target.name << "!" << std::endl;
+magicPower -= magic.cost;
+if(target.health <= 0) {
+std::cout << target.name << " has been defeated!" << std::endl;
+gainExperience(50);
+respawn(target);
+}
+}
+}
+
+void respawn(Player& target) {
+target.health = 100;
+std::cout << target.name << " has respawned with full health!" << std::endl;
+}
+
+void run() {
+std::cout << name << " has run away!" << std::endl;
+}
+
+void heal() {
+if(magicPower >= 40) {
+health += 10;
+magicPower -= 40;
+std::cout << name << " has healed for 10 health!" << std::endl;
+}
+}
+
+void gainExperience(int experiencePoints) {
+experience += experiencePoints;
+if(experience >= level * 100) {
+level++;
+health += 10;
+magicPower += 5;
+std::cout << name << " has leveled up to level " << level << "!" << std::endl;
+}
+}
+
+void manageInventory() {
+// Code to manage the inventory
+}
+
+void completeQuest() {
+// Code to complete a quest
+}
+
+void captureFairy() {
+hasFairy = true;
+std::cout << name << " has captured a fairy!" << std::endl;
+}
+
+void createClone(Player& player2) {
+if(hasFairy) {
+Player clone = player2;
+clone.level *= 5;
+clone.health *= 5;
+clone.magicPower *= 5;
+std::cout << name << " has created a clone of " << player2.name << "!" << std::endl;
+attack(magic1, clone);
+if(clone.health <= 0) {
+std::cout << name << " has defeated the clone and earned the Clone Fighter rank!" << std::endl;
+name = "\033[1;34m" + name + "\033[0m";
+}
+}
+}
+};
+
+int main() {
+// Define the player characters
+Player player1("John");
+Player player2("Mary");
+
+// Capture a fairy
+player1.captureFairy();
+
+// Create a clone of player2
+player1.createClone(player2);
+
+// Attack player2 with magic1
+player1.attack(player1.magic1, player2);
+
+return 0;
+}
+``````
+#include <iostream>
+#include <string>
+#include <vector>
+
+enum Rank {
+Grey,
+Blue,
+Red,
+Purple,
+Gold,
+Rainbow
+};
+
+class Player {
+public:
+std::string name;
+int healthPoints;
+int attackPower;
+int monsterDefeated;
+Rank rank;
+
+Player(std::string name) {
+this->name = name;
+this->healthPoints = 100;
+this->attackPower = 40;
+this->monsterDefeated = 0;
+this->rank = Grey;
+}
+
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Health Points: " << healthPoints << std::endl;
+std::cout << "Attack Power: " << attackPower << std::endl;
+std::cout << "Monsters Defeated: " << monsterDefeated << std::endl;
+std::cout << "Rank: ";
+
+switch(rank) {
+case Grey:
+std::cout << "Grey" << std::endl;
+break;
+case Blue:
+std::cout << "Blue" << std::endl;
+break;
+case Red:
+std::cout << "Red" << std::endl;
+break;
+case Purple:
+std::cout << "Purple" << std::endl;
+break;
+case Gold:
+std::cout << "Gold" << std::endl;
+break;
+case Rainbow:
+std::cout << "Rainbow" << std::endl;
+break;
+}
+}
+
+void setRank() {
+if(monsterDefeated == 0) {
+rank = Grey;
+} else if(monsterDefeated >= 1 && monsterDefeated < 100) {
+rank = Blue;
+} else if(monsterDefeated >= 100 && monsterDefeated < 250) {
+rank = Red;
+} else if(monsterDefeated >= 250 && name == "clanmaster") {
+rank = Purple;
+} else if(rank == Purple && name == "clonecreator") {
+rank = Gold;
+} else if(name == "natezack9") {
+rank = Rainbow;
+}
+}
+
+void rankBonus() {
+switch(rank) {
+case Grey:
+healthPoints += 0;
+attackPower += 0;
+break;
+case Blue:
+healthPoints += 100;
+attackPower += (attackPower * 0.4);
+break;
+case Red:
+healthPoints += 101;
+attackPower += (attackPower * 0.6);
+break;
+case Purple:
+healthPoints += 150;
+attackPower += (attackPower * 0.65);
+break;
+case Gold:
+healthPoints += 200;
+attackPower += (attackPower * 0.75);
+break;
+case Rainbow:
+healthPoints += 8900;
+attackPower += (attackPower * 10);
+break;
+}
+}
+
+void defeatMonster() {
+monsterDefeated++;
+setRank();
+rankBonus();
+}
+};
+
+int main() {
+Player player("John");
+player.displayInfo();
+player.defeatMonster();
+player.defeatMonster();
+player.displayInfo();
+
+return 0;
+}
+``````cpp
+#include <iostream>
+#include <string>
+#include <vector>
+
+enum PetType {
+Cat,
+Dog,
+Dragon,
+Unicorn,
+Phoenix
+};
+
+class Pet {
+public:
+std::string name;
+PetType type;
+int level;
+int experience;
+int magicType;
+
+Pet(std::string name, PetType type, int level, int experience, int magicType) {
+this->name = name;
+this->type = type;
+this->level = level;
+this->experience = experience;
+this->magicType = magicType;
+}
+
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Type: ";
+switch(type) {
+case Cat:
+std::cout << "Cat";
+break;
+case Dog:
+std::cout << "Dog";
+break;
+case Dragon:
+std::cout << "Dragon";
+break;
+case Unicorn:
+std::cout << "Unicorn";
+break;
+case Phoenix:
+std::cout << "Phoenix";
+break;
+default:
+std::cout << "Unknown";
+break;
+}
+std::cout << std::endl;
+std::cout << "Level: " << level << std::endl;
+std::cout << "Experience: " << experience << std::endl;
+std::cout << "Magic Type: " << magicType << std::endl;
+}
+};
+
+class Player {
+public:
+std::string name;
+int level;
+int experience;
+int health;
+int magicPower;
+std::vector<std::string> inventory;
+Pet pet;
+
+Player(std::string name, int level, int experience, int health, int magicPower, std::vector<std::string> inventory, Pet pet) {
+this->name = name;
+this->level = level;
+this->experience = experience;
+this->health = health;
+this->magicPower = magicPower;
+this->inventory = inventory;
+this->pet = pet;
+}
+
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Level: " << level << std::endl;
+std::cout << "Experience: " << experience << std::endl;
+std::cout << "Health: " << health << std::endl;
+std::cout << "Magic Power: " << magicPower << std::endl;
+std::cout << "Inventory: ";
+for(std::string item : inventory) {
+std::cout << item << ", ";
+}
+std::cout << std::endl;
+std::cout << "Pet Information: " << std::endl;
+pet.displayInfo();
+}
+};
+
+int main() {
+Pet myCat("Socks", Cat, 3, 500, 4);
+Pet myDog("Rex", Dog, 5, 1000, 7);
+Pet myDragon("Draco", Dragon, 10, 5000, 12);
+Pet myUnicorn("Sparkle", Unicorn, 8, 3000, 10);
+Pet myPhoenix("Blaze", Phoenix, 12, 8000, 16);
+
+Player myPlayer("John", 5, 1000, 100, 50, {"Potion", "Elixir", "Key"}, myCat);
+myPlayer.displayInfo();
+
+myPlayer.pet = myDragon;
+myPlayer.displayInfo();
+
+myPlayer.pet = myPhoenix;
+myPlayer.displayInfo();
+
+return 0;
+}
+```
+```
+#include <iostream>
+#include <string>
+#include <chrono>
+#include <thread>
+
+enum Rank {
+White,
+Purple,
+Gold,
+Rainbow
+};
+
+class Exide {
+public:
+Rank rank;
+std::string color;
+
+Exide(Rank rank) {
+this->rank = rank;
+switch (rank) {
+case White:
+color = "white";
+break;
+case Purple:
+color = "purple";
+break;
+case Gold:
+color = "gold";
+break;
+case Rainbow:
+color = "rainbow";
+break;
+}
+}
+
+void fly() {
+std::cout << "Flying on my " << color << " Exide!" << std::endl;
+}
+};
+
+int main() {
+bool hasEgg = true;
+bool isHatching = false;
+
+while (hasEgg) {
+std::cout << "Press and hold 'h' to hatch the egg" << std::endl;
+
+if (std::cin.get() == 'h') {
+std::cout << "Hatching egg..." << std::endl;
+isHatching = true;
+std::this_thread::sleep_for(std::chrono::seconds(10));
+std::cout << "Congratulations! Your Exide has hatched!" << std::endl;
+hasEgg = false;
+} else {
+std::cout << "Egg not hatched yet." << std::endl;
+}
+}
+
+std::cout << "What rank is your Exide?" << std::endl;
+std::cout << "1. White" << std::endl;
+std::cout << "2. Purple" << std::endl;
+std::cout << "3. Gold" << std::endl;
+std::cout << "4. Rainbow" << std::endl;
+
+int selection;
+std::cin >> selection;
+
+Rank rank;
+switch (selection) {
+case 1:
+rank = White;
+break;
+case 2:
+rank = Purple;
+break;
+case 3:
+rank = Gold;
+break;
+case 4:
+rank = Rainbow;
+break;
+default:
+std::cout << "Invalid selection." << std::endl;
+return 0;
+}
+
+Exide exide(rank);
+exide.fly();
+
+return 0;
+}
+```
+// Define the boss class
+class Boss {
+public:
+std::string name;
+int healthPoints;
+int damage;
+
+// Constructor to set default values
+Boss(std::string name, int healthPoints, int damage) {
+this->name = name;
+this->healthPoints = healthPoints;
+this->damage = damage;
+}
+
+// Method to attack the player
+void attack(Player& player) {
+player.health -= damage;
+std::cout << "The " << name << " attacked you and dealt " << damage << " damage!" << std::endl;
+}
+
+// Method to display the boss information
+void displayInfo() {
+std::cout << "Boss Name: " << name << std::endl;
+std::cout << "Health Points: " << healthPoints << std::endl;
+std::cout << "Damage: " << damage << std::endl;
+}
+};
+
+int main() {
+// Define the boss
+Boss theBoss("The Ultimate Boss", 1000000, 100);
+
+// Display the boss information to all players
+std::cout << "A new boss has appeared! Join the fight by pressing the 'j' key." << std::endl;
+theBoss.displayInfo();
+
+// Handle player input
+while(true) {
+if(/* player presses 'j' key and less than 40 players have joined */) {
+// Code to add the player to the fight
+}
+if(/* 40 players have joined */) {
+// Code to start the fight
+while(theBoss.healthPoints > 0) {
+// Code for the boss attack
+// Code for the player attack
+}
+
+// Code to reward the players that won the fight
+std::cout << "Congratulations! You won the boss fight and received an Exotic Egg!" << std::endl;
+
+// Code to reset the boss for the next fight
+theBoss.healthPoints = 1000000;
+}
+}
+
+return 0;
+}// Define the player class
+class Player {
+public:
+std::string name;
+int level;
+int experience;
+int health;
+int magicPower;
+std::vector<std::string> inventory;
+int rank; // Added a rank variable
+
+// Constructor to set default values
+Player(std::string name) {
+this->name = name;
+this->level = 1;
+this->experience = 0;
+this->health = 100;
+this->magicPower = 50;
+this->inventory = {"Potion", "Elixir", "Key"};
+this->rank = 1; // Set the default rank to 1
+}
+
+// Method to display the player information
+void displayInfo() {
+std::cout << "Name: " << name << std::endl;
+std::cout << "Level: " << level << std::endl;
+std::cout << "Experience: " << experience << std::endl;
+std::cout << "Health: " << health << std::endl;
+std::cout << "Magic Power: " << magicPower << std::endl;
+std::cout << "Inventory: ";
+for(std::string item : inventory) {
+std::cout << item << ", ";
+}
+std::cout << std::endl;
+std::cout << "Rank: " << rank << std::endl; // Display the rank
+}
+
+// Method to attack with magic
+void attack(int attackType, Enemy& enemy) {
+if(magicPower >= getMagicCost(attackType)) {
+if (rank == 7) { // Check if player is Rainbow Rank
+// Rainbow Rank can one-shot the boss
+int damage = enemy.health;
+enemy.health -= damage;
+magicPower -= getMagicCost(attackType);
+std::cout << "You performed an attack with " << getMagicName(attackType) << " and dealt " << damage << " damage to " << enemy.name << "!" << std::endl;
+} else {
+int damage = getMagicDamage(attackType);
+enemy.health -= damage;
+magicPower -= getMagicCost(attackType);
+std::cout << "You performed an attack with " << getMagicName(attackType) << " and dealt " << damage << " damage to " << enemy.name << "!" << std::endl;
+}
+} else {
+std::cout << "You do not have enough magic power to perform this attack." << std::endl;
+}
+}
+
+// Method to set the player rank
+void setRank() {
+// Code to determine the player's rank based on their name and other factors
+// For this example, we'll set the rank to 7 for testing purposes
+rank = 7;
+}
+
+// Method to give the player a rank bonus to their health
+void rankBonus() {
+if(rank == 7) { // Rainbow Rank gets a bonus to health
+health += 100;
+std::cout << "Congratulations! You received a rank bonus of +100 health points!" << std::endl;
+}
+}
+};
+
+int main() {
+// Define the player character and an enemy
+Player player("John");
+Enemy enemy("Goblin", 1, 20, 10);
+
+// Set the player rank based on their name
+player.setRank();
+
+// Give the player a rank bonus to their health
+player.rankBonus();
+
+// Display the player information
+player.displayInfo();
+
+// Handle player input
+while(true) {
+if(/* player presses '1', '2', or '3' keys */) {
+int attackType = /* get the attack type from player input */;
+player.attack(attackType, enemy);
+
+if(enemy.health <= 0) {
+std::cout << "You defeated the " << enemy.name << "!" << std::endl;
+// Code to reward the player for defeating the enemy
+break;
+}
+
+// Code for the enemy to attack the player
+}
+}
+
+return 0;
+}// Define the enemy class
+class Enemy {
+public:
+std::string name;
+int healthPoints;
+int damage;
+
+// Constructor to set default values
+Enemy(std::string name, int healthPoints, int damage) {
+this->name = name;
+this->healthPoints = healthPoints;
+this->damage = damage;
+}
+
+// Method for the enemy to attack the player
+void attack(Player& player) {
+player.healthPoints -= damage;
+std::cout << name << " attacked " << player.name << " for " << damage << " damage!" << std::endl;
+}
+};
+
+int main() {
+// Create a new player
+Player myPlayer("John", "Male");
+
+// Display the player's information
+myPlayer.displayInfo();
+
+// Create a new enemy
+Enemy myEnemy("Goblin", 20, 5);
+
+// Attack the enemy
+myPlayer.attack(myEnemy, 10);
+
+// Attack the player
+myEnemy.attack(myPlayer);
+
+// Check if the player is still alive
+if(myPlayer.healthPoints <= 0) {
+std::cout << "You have been defeated!" << std::endl;
+// Code to respawn the player
+}
+
+// Check if the enemy is still alive
+if(myEnemy.healthPoints <= 0) {
+std::cout << "You have defeated the " << myEnemy.name << "!" << std::endl;
+// Code to drop loot for the player to pick up
+}
+
+return 0;
+}// Define the game world class
+class GameWorld {
+public:
+std::vector<Player> players;
+std::vector<Enemy> enemies;
+std::vector<Pet> pets;
+std::vector<Town> towns;
+
+// Method to add a new player to the game world
+void addPlayer(Player player) {
+players.push_back(player);
+}
+
+// Method to add a new enemy to the game world
+void addEnemy(Enemy enemy) {
+enemies.push_back(enemy);
+}
+
+// Method to add a new pet to the game world
+void addPet(Pet pet) {
+pets.push_back(pet);
+}
+
+// Method to add a new town to the game world
+void addTown(Town town) {
+towns.push_back(town);
+}
+};
+
+int main() {
+// Create a new game world
+GameWorld myGameWorld;
+
+// Create some new players and add them to the game world
+Player john("John", "Male");
+Player jane("Jane", "Female");
+myGameWorld.addPlayer(john);
+myGameWorld.addPlayer(jane);
+
+// Create some new enemies and add them to the game world
+Enemy goblin("Goblin", 20, 5);
+Enemy vampire("Vampire", 100, 20);
+myGameWorld.addEnemy(goblin);
+myGameWorld.addEnemy(vampire);
+
+// Create some new pets and add them to the game world
+Pet cat("Cat", PetType::Cat, 1, 0, MagicType::None);
+Pet dragon("Dragon", PetType::Dragon, 5, 100, MagicType::Fire);
+myGameWorld.addPet(cat);
+myGameWorld.addPet(dragon);
+
+// Create some new towns and add them to the game world
+Town springValley("Spring Valley", "A peaceful town surrounded by beautiful cherry blossom trees.");
+Town winterHaven("Winter Haven", "A town covered in snow and ice, where the people are hardy and strong.");
+myGameWorld.addTown(springValley);
+myGameWorld.addTown(winterHaven);
+
+// Display all the players in the game world
+std::cout << "Players in the game world:" << std::endl;
+for(Player player : myGameWorld.players) {
+player.displayInfo();
+}
+
+// Display all the enemies in the game world
+std::cout << "Enemies in the game world:" << std::endl;
+for(Enemy enemy : myGameWorld.enemies) {
+std::cout << enemy.name << " has " << enemy.healthPoints << " health points and does " << enemy.damage << " damage." << std::endl;
+}
+
+// Display all the pets in the game world
+std::cout << "Pets in the game world:" << std::endl;
+for(Pet pet : myGameWorld.pets) {
+pet.displayInfo();
+}
+
+// Display all the towns in the game world
+std::cout << "Towns in the game world:" << std::endl;
+for(Town town : myGameWorld.towns) {
+std::cout << town.name << " - " << town.description << std::endl;
+}
+
+return 0;
+}```
+// Define the Inventory class
+class Inventory {
+public:
+// Constructor to initialize the inventory
+Inventory() {
+items = {}; // Empty vector
+}
+
+// Method to add an item to the inventory
+void addItem(std::string item) {
+items.push_back(item);
+}
+
+// Method to remove an item from the inventory
+void removeItem(std::string item) {
+items.erase(std::remove(items.begin(), items.end(), item), items.end());
+}
+
+// Method to display the inventory
+void displayInventory() {
+std::cout << "Inventory: ";
+for (auto item : items) {
+std::cout << item << " ";
+}
+std::cout << std::endl;
+}
+
+private:
+std::vector<std::string> items;
+};
+
+int main() {
+// Create a player and an inventory
+Player myPlayer("John");
+Inventory myInventory;
+
+// Add items to the inventory
+myInventory.addItem("Sword");
+myInventory.addItem("Armor");
+myInventory.addItem("Potion");
+
+// Display the inventory
+myInventory.displayInventory();
+
+// Remove an item from the inventory
+myInventory.removeItem("Armor");
+
+// Display the inventory again
+myInventory.displayInventory();
+
+return 0;
+}
+```
+
+2. A random monster generator:
+
+```
+// Define the Monster class
+class Monster {
+public:
+// Constructor to create a new monster
+Monster(std::string name, int healthPoints, int attackPoints) {
+this->name = name;
+this->healthPoints = healthPoints;
+this->attackPoints = attackPoints;
+}
+
+// Method to display the monster information
+void displayInfo() {
+std::cout << "Monster: " << name << std::endl;
+std::cout << "Health Points: " << healthPoints << std::endl;
+std::cout << "Attack Points: " << attackPoints << std::endl << std::endl;
+}
+
+private:
+std::string name;
+int healthPoints;
+int attackPoints;
+};
+
+int main() {
+// Define some monster names and attributes
+std::vector<std::string> names = {"Goblin", "Orc", "Troll", "Dragon", "Demon"};
+std::vector<int> healthPoints = {20, 30, 50, 100, 200};
+std::vector<int> attackPoints = {5, 10, 20, 50, 100};
+
+// Generate a random monster
+srand(time(nullptr)); // Seed the random number generator with the current time
+int index = rand() % names.size(); // Get a random index
+std::string name = names[index];
+int health = healthPoints[index];
+int attack = attackPoints[index];
+
+// Create the monster and display its information
+Monster myMonster(name, health, attack);
+myMonster.displayInfo();
+
+return 0;
+}
+```
+
+3. A battle system:
+
+```
+// Define the Battle class
+class Battle {
+public:
+// Constructor to initialize the battle
+Battle(Player& player, Monster& monster) {
+this->player = &player;
+this->monster = &monster;
+battleOver = false;
+}
+
+// Method to start the battle
+void startBattle() {
+std::cout << "A wild " << monster->getName() << " appeared! Get ready to fight!" << std::endl << std::endl;
+
+// Loop until the battle is over
+while (!battleOver) {
+// Player's turn
+std::cout << "It's " << player->getName() << "'s turn. Choose your action:" << std::endl;
+std::cout << "1. Attack" << std::endl;
+std::cout << "2. Use item" << std::endl;
+std::cout << "3. Run away" << std::endl;
+
+int choice;
+std::cin >> choice;
+
+switch (choice) {
+case 1: // Attack the monster
+int damage = player->getAttackPoints();
+monster->takeDamage(damage);
+std::cout << player->getName() << " attacked the " << monster->getName() << " for " << damage << " damage." << std::endl;
+break;
+case 2: // Use an item from the inventory
+player->useItem();
+break;
+case 3: // Try to run away
+if (rand() % 2 == 0) {
+std::cout << player->getName() << " ran away from the " << monster->getName() << "." << std::endl;
+battleOver = true;
+} else {
+std::cout << player->getName() << " couldn't escape from the " << monster->getName() << "." << std::endl;
+}
+break;
+default:
+std::cout << "Invalid choice. Try again." << std::endl;
+break;
+}
+
+// Check if the monster is defeated
+if (monster->getHealthPoints() <= 0) {
+std::cout << "You defeated the " << monster->getName() << "." << std::endl;
+player->gainExperience(50);
+battleOver = true;
+break;
+}
+
+// Monster's turn
+int damage = monster->getAttackPoints();
+player->takeDamage(damage);
+std::cout << "The " << monster->getName() << " attacked " << player->getName() << " for " << damage << " damage." << std::endl;
+
+// Check if the player is defeated
+if (player->getHealthPoints() <= 0) {
+std::cout << "You were defeated by the " << monster->getName() << "." << std::endl;
+battleOver = true;
+break;
+}
+
+std::cout << std::endl;
+}
+}
+
+private:
+Player* player;
+Monster* monster;
+bool battleOver;
+};
+
+int main() {
+// Create a player and a monster
+Player myPlayer("John");
+Monster myMonster("Goblin", 20, 5);
+
+// Start the battle
+Battle myBattle(myPlayer, myMonster);
+myBattle.startBattle();
+
+return 0;
+}
+``````
+#include <iostream>
+#include <vector>
+
+// Define the fairy class
+class Fairy {
+public:
+std::string name;
+std::string color;
+int level;
+
+// Constructor to set default values
+Fairy() {
+name = "Default Fairy";
+color = "Rainbow";
+level = 1;
+}
+
+// Method to display fairy information
+void displayInfo() {
+std::cout << "Fairy: " << name << std::endl;
+std::cout << "Color: " << color << std::endl;
+std::cout << "Level: " << level << std::endl;
+}
+};
+
+// Define the player class
+class Player {
+public:
+float x;
+float y;
+float z;
+int healthPoints;
+int magicType;
+std::vector<Fairy> fairies;
+
+// Constructor to set default values
+Player() {
+x = 0.0f;
+y = 0.0f;
+z = 0.0f;
+healthPoints = 100;
+magicType = 0;
+}
+
+// Method to display player information
+void displayInfo() {
+std::cout << "Player Position: (" << x << ", " << y << ", " << z << ")" << std::endl;
+std::cout << "Health Points: " << healthPoints << std::endl;
+std::cout << "Magic Type: " << magicType << std::endl;
+std::cout << "Fairies: " << std::endl;
+for (auto fairy : fairies) {
+fairy.displayInfo();
+}
+}
+
+// Method to catch a fairy
+void catchFairy() {
+// Code to catch a fairy
+Fairy newFairy;
+fairies.push_back(newFairy);
+std::cout << "You caught a new fairy!" << std::endl;
+}
+};
+
+int main() {
+// Create a new player
+Player myPlayer;
+
+// Prompt the user to press 'x' to teleport to the hidden woods if they die
+if(/* player dies and presses 'x' */) {
+// Teleport the player to the hidden woods
+myPlayer.x = 50.0f;
+myPlayer.y = 50.0f;
+myPlayer.z = 50.0f;
+std::cout << "Welcome to the hidden woods!" << std::endl;
+
+// Let the player catch fairies
+std::cout << "You can catch fairies here to use in the clone machine under the caves." << std::endl;
+std::cout << "Press 'c' to catch a fairy." << std::endl;
+char input;
+while (true) {
+std::cin >> input;
+if (input == 'c') {
+myPlayer.catchFairy();
+}
+else {
+break;
+}
+}
+}
+
+return 0;
+}
+``````cpp
+// Define the enemy class
+class Enemy {
+public:
+std::string name;
+int health;
+int damage;
+
+Enemy(std::string name, int health, int damage) {
+this->name = name;
+this->health = health;
+this->damage = damage;
+}
+
+// Method to display the enemy information
+void displayInfo() {
+std::cout << "Enemy: " << name << std::endl;
+std::cout << "Health: " << health << std::endl;
+std::cout << "Damage: " << damage << std::endl;
+}
+
+// Method to attack the player
+void attack(Player& player) {
+player.health -= damage;
+std::cout << name << " attacked you and dealt " << damage << " damage!" << std::endl;
+}
+};
+
+int main() {
+// Create a new player
+Player myPlayer("Jane", Female);
+
+// Create a new enemy
+Enemy goblin("Goblin", 50, 10);
+
+// Display the player and enemy information
+myPlayer.displayInfo();
+goblin.displayInfo();
+
+// Handle player input to attack with magic or run from the battle
+while (true) {
+// Prompt the user for input
+std::cout << "What would you like to do?" << std::endl;
+std::cout << "1. Attack with magic" << std::endl;
+std::cout << "2. Run from the battle" << std::endl;
+
+// Get the user's choice
+int choice;
+std::cin >> choice;
+
+if (choice == 1) {
+// Prompt the user for input
+std::cout << "Select a magic attack:" << std::endl;
+std::cout << "1. Fireball" << std::endl;
+std::cout << "2. Ice Storm" << std::endl;
+std::cout << "3. Thunderbolt" << std::endl;
+
+// Get the user's choice
+int attackType;
+std::cin >> attackType;
+
+// Attack the enemy with magic
+int damage = myPlayer.attack(attackType);
+goblin.health -= damage;
+std::cout << "You attacked the Goblin with " << getMagicName(attackType) << " and dealt " << damage << " damage!" << std::endl;
+
+// Check if the enemy is defeated
+if (goblin.health <= 0) {
+std::cout << "You defeated the Goblin!" << std::endl;
+break;
+}
+
+// Enemy attacks the player
+goblin.attack(myPlayer);
+
+// Check if the player is defeated
+if (myPlayer.health <= 0) {
+std::cout << "You were defeated by the Goblin!" << std::endl;
+break;
+}
+}
+else if (choice == 2) {
+// Player runs from the battle
+myPlayer.run();
+std::cout << "You ran away from the battle!" << std::endl;
+break;
+}
+else {
+std::cout << "Invalid choice. Please try again." << std::endl;
+}
+}
+
+return 0;
+}
+```
+Cave() { srand((unsigned) time(0)); int numberOfMonsters = rand() % 5 + 1; for(int i = 0; i < numberOfMonsters; i++) { Monster monster; monster.name = "Monster " + std::to_string(i+1); monster.healthPoints = rand() % 50 + 50; monsters.push_back(monster); } } // Method to start the battle void startBattle(Player& player) { std::cout << "You have entered a cave with " << monsters.size() << " monsters!" << std::endl; while(true) { // Display player information player.displayInfo(); // Display monster information for(int i = 0; i < monsters.size(); i++) { std::cout << "Monster " << i+1 << ": " << monsters[i].name << ", Health Points: " << monsters[i].healthPoints << std::endl; } // Prompt the player to choose an action std::cout << "Choose an action:" << std::endl; std::cout << "1. Attack" << std::endl; std::cout << "2. Heal" << std::endl; std::cout << "3. Run" << std::endl; std::cout << "4. Press '4' three times" << std::endl; int choice; std::cin >> choice; if(choice == 1) { // Prompt the player to choose a monster to attack std::cout << "Choose a monster to attack:" << std::endl; for(int i = 0; i < monsters.size(); i++) { std::cout << i+1 << ". " << monsters[i].name << std::endl; } int target; std::cin >> target; if(target >= 1 && target <= monsters.size()) { int damage = rand() % 20 + 10; player.attack(monsters[target-1], damage); std::cout << "You attacked " << monsters[target-1].name << " for " << damage << " damage!" << std::endl; if(monsters[target-1].healthPoints <= 0) { monsters.erase(monsters.begin() + target-1); std::cout << "You defeated " << monsters[target-1].name << "!" << std::endl; } } else { std::cout << "Invalid target!" << std::endl; } } else if(choice == 2) { player.heal(); } else if(choice == 3) { std::cout << "You ran away from the battle!" << std::endl; break; } else if(choice == 4) { static int count = 0; count++; if(count == 3) { std::cout << "You have discovered a secret passage to an underground lab!" << std::endl; // Remove player's magic for 1 hour player.magicType = 0; std::cout << "Your magic has been taken away for 1 hour!" << std::endl; break; } } else { std::cout << "Invalid choice!" << std::endl; } // Check if all monsters have been defeated if(monsters.empty()) { std::cout << "You have defeated all the monsters!" << std::endl; break; } // Monsters attack for(int i = 0; i < monsters.size(); i++) { int damage = rand() % 20 + 10; monsters[i].attack(player, damage); std::cout << monsters[i].name << " attacked you for " << damage << " damage!" << std::endl; } // Check if player has been defeated if(player.healthPoints <= 0) { std::cout << "You have been defeated by the monsters!" << std::endl; break; } } } }; int main() { // Create a new player Player player; // Enter a random cave Cave cave; cave.startBattle(player); return 0; } ```
